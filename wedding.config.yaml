@@ -1,0 +1,86 @@
+couple:
+  partner1: Jann Daniel
+  partner2: Faith
+  date: May 2, 2026
+  location: Manila, Philippines
+
+rsvpDeadline: April 2, 2026
+
+hero:
+  images:
+    - hero-1-hd.jpg
+    - hero-3-hd.jpg
+    - hero-4-hd.jpg
+    - hero-5-hd.jpg
+    - hero-6-hd.jpg
+
+# Toggle sections on or off — set to false to hide
+sections:
+  ceremony: true
+  reception: true
+  attire: true
+  faq: true
+  rsvp: true
+
+ceremony:
+  name: Iglesia Ni Cristo – Locale of Pasay
+  address: Pasay City, Metro Manila
+  date: May 2, 2026
+  time: "2:00 PM"
+  note: Please arrive 15–20 minutes early to be seated before the ceremony begins.
+  mapsUrl: https://maps.google.com/
+  image: church-ceremony-1.png
+
+reception:
+  name: Admiral MGallery Hotel
+  address: Roxas Boulevard, Manila
+  time: "6:00 PM"
+  note: Join us for dinner, dancing, and celebration as we begin our journey together as husband and wife.
+  mapsUrl: https://maps.google.com/
+  image: reception-hotel.jpg
+
+attire:
+  dress: Strictly Formal
+  male: Barong Tagalog
+  female: Long Gown / Dress
+  note: Please honor the dress code and color palette to ensure a cohesive and elegant celebration aesthetic.
+  images:
+    male: barong-tagalog.png
+    female: green-gown.png
+
+faq:
+  - question: Can we skip the ceremony and go to the reception?
+    answer: "Of course! We'll see you at the reception, just answer the RSVP :)"
+  - question: We will be going to the church, what time should we arrive?
+    answer: We kindly ask our guests to arrive at the church by 2:00 PM so we can begin the ceremony on time and maintain its solemn atmosphere.
+  - question: Where should I park?
+    answer: There are plenty of parking slots both in the church and hotel venue.
+  - question: I am coming from out of town. Where should I stay?
+    answer: You may check Airbnb for nearby accommodations or message us via Facebook Messenger to avail the special discount at Admiral Hotel Manila.
+  - question: Can we take pictures and videos during the ceremony?
+    answer: "Our ceremony is unplugged and we plan to keep it solemn. Please keep your phones on silent during the processional and ceremony. Once we are pronounced as husband and wife, you're free to take photos and videos. Please keep the aisle clear during the bridal entrance."
+  - question: Can we bring our kids?
+    answer: As much as we love kids, we want the event to be for adults only. The only kids attending our wedding are those we requested. Thank you for understanding.
+  - question: Do you have any gift preference?
+    answer: "We are grateful for the time and effort you'll be spending just to be there on our special day. We'll be thankful to receive monetary gifts as we build our family."
+  - question: Can we bring a plus-one?
+    answer: "As much as we'd love to have everyone celebrate with us, unfortunately, we can only accommodate a limited number of guests due to venue space and budget restrictions."
+  - question: Can we sit anywhere in the church?
+    answer: Church seating arrangements are strictly implemented to uphold the solemnity and organization of the worship service. We sincerely ask for your understanding and respect for this practice.
+  - question: Can we sit anywhere at the reception?
+    answer: "It took us a lot of effort and discussion to finish the seating arrangement which is planned for everyone's convenience and network preference. You'll be seated along with family and friends."
+  - question: Do we really need to RSVP?
+    answer: Yes. This will help us finalize the headcount for catering and seating arrangement.
+  - question: When can we leave?
+    answer: We would appreciate it if you could stay with us until the end of the program (9pm).
+  - question: How can we help the couple have the best time?
+    answer: "RSVP NOW. Wear APPROPRIATE attire. Be there ON TIME. Stay until the end of the program. Have fun and enjoy! :)"
+
+email:
+  senderName: Jann Daniel & Faith
+  senderAddress: noreply@yourdomain.com
+
+theme:
+  primary: "#7C3041"
+  secondary: "#F5F0E8"
+  accent: "#5C2233"
