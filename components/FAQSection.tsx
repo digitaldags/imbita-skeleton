@@ -1,82 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import type { WeddingConfig } from '@/lib/config'
 
-interface FAQItem {
-  question: string
-  answer: string
-}
-
-const churchOnlyFAQs = new Set([
-  'Can we skip the ceremony and go to the reception?',
-  'We will be going to the church, what time should we arrive?',
-  'Can we take pictures and videos during the ceremony?',
-  'Can we sit anywhere on the church?',
-])
-
-const faqs: FAQItem[] = [
-  {
-    question: 'Can we skip the ceremony and go to the reception?',
-    answer: "Of course! We'll see you at the reception, just answer the RSVP :)",
-  },
-  {
-    question: 'We will be going to the church, what time should we arrive?',
-    answer:
-      'We kindly ask our guests to arrive at the church by 2:00 PM so we can begin the ceremony on time and maintain its solemn atmosphere.',
-  },
-  {
-    question: 'Where should I park?',
-    answer: 'There are plenty of parking slots both in the church and hotel venue.',
-  },
-  {
-    question: 'I am coming from out of town. Where should I stay?',
-    answer:
-      'You may check AIRBNB for nearby hotels/accommodations or message us via FB messenger to avail the special discount in Admiral Hotel Manila.',
-  },
-  {
-    question: 'Can we take pictures and videos during the ceremony?',
-    answer:
-      "Our ceremony is unplugged and we plan to keep it solemn. Please keep your phones and put it in silent mode during the processional and ceremony. Once we are pronounced as husband and wife, you're free to take photos and videos. Please keep the aisle clear during the bridal entrance.",
-  },
-  {
-    question: 'Can we bring our kids?',
-    answer:
-      "As much as we love kids, we want the event to be for adults only. The only kids attending our wedding are those we requested. Thank you for understanding.",
-  },
-  {
-    question: 'Do you have any gift preference?',
-    answer:
-      "We are grateful for the time and effort you'll be spending just to be there on our special day. We'll be thankful to receive monetary gifts as we build our family.",
-  },
-  {
-    question: 'Can we bring a plus-one with me?',
-    answer:
-      "As much as we'd love to have everyone celebrate with us, unfortunately, we can only accommodate limited number of guests due to venue space and budget restrictions.",
-  },
-  {
-    question: 'Can we sit anywhere on the church?',
-    answer:
-      'Church seating arrangements are strictly implemented to uphold the solemnity and organization of the worship service. We sincerely ask for your understanding and respect for this practice.',
-  },
-  {
-    question: 'Can we sit anywhere at the reception?',
-    answer:
-      "It took us a lot of effort and discussion to finish the seating arrangement which is planned for everyone's convenience and network preference. You'll be seating along with family and friends.",
-  },
-  {
-    question: 'Do we really need to RSVP?',
-    answer: 'Yes. This will help us finalize the headcount for catering and seating arrangement.',
-  },
-  {
-    question: 'When can we leave?',
-    answer: 'We would appreciate it if you could stay with us until the end of the program (9pm).',
-  },
-  {
-    question: 'How can we help the couple have the best time?',
-    answer:
-      "RSVP NOW. Wear APPROPRIATE attire. Be there ON TIME. Stay until the end of the program, don't eat and run. Have fun and enjoy! :)",
-  },
-]
+type FAQItem = WeddingConfig['faq'][number]
 
 function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onToggle: () => void }) {
   return (
@@ -126,12 +53,8 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onT
   )
 }
 
-export default function FAQSection({ receptionOnly = false }: { receptionOnly?: boolean }) {
+export default function FAQSection({ faqs }: { faqs: WeddingConfig['faq'] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const visibleFAQs = receptionOnly
-    ? faqs.filter((faq) => !churchOnlyFAQs.has(faq.question))
-    : faqs
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -154,7 +77,7 @@ export default function FAQSection({ receptionOnly = false }: { receptionOnly?: 
 
         {/* FAQ Accordion */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-wedding-beige-dark/20">
-          {visibleFAQs.map((faq, index) => (
+          {faqs.map((faq, index) => (
             <FAQItem
               key={index}
               faq={faq}

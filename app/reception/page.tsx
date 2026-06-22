@@ -3,6 +3,7 @@
  */
 
 import Link from 'next/link'
+import { config } from '@/lib/config'
 import Hero from '@/components/Hero'
 import VenueDetails from '@/components/VenueDetails'
 import AttireDetails from '@/components/AttireDetails'
@@ -11,13 +12,18 @@ import FAQSection from '@/components/FAQSection'
 export default function ReceptionPage() {
   return (
     <main className="min-h-screen flex flex-col bg-wedding-beige-light">
-      <Hero />
+      <Hero couple={config.couple} />
 
-      <VenueDetails showChurch={false} />
+      <VenueDetails
+        ceremony={config.ceremony}
+        reception={config.reception}
+        showCeremony={false}
+        showReception={true}
+      />
 
-      <AttireDetails />
+      {config.sections.attire && <AttireDetails attire={config.attire} />}
 
-      <FAQSection receptionOnly={true} />
+      {config.sections.faq && <FAQSection faqs={config.faq} />}
 
       {/* RSVP CTA Section */}
       <section className="w-full bg-white py-20">
@@ -28,8 +34,8 @@ export default function ReceptionPage() {
             </h2>
             <div className="w-24 h-1 bg-wedding-maroon mx-auto my-6"></div>
             <p className="text-lg text-wedding-maroon-dark mb-8">
-              We can&apos;t wait to celebrate with you! Please RSVP by April 2nd
-              to help us plan for the perfect day.
+              We can&apos;t wait to celebrate with you! Please RSVP by{' '}
+              {config.rsvpDeadline} to help us plan for the perfect day.
             </p>
 
             <Link

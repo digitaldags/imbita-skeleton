@@ -1,14 +1,10 @@
-/**
- * Attire Details Component
- * Recreates the attire section from the physical wedding invitation
- */
-
 'use client'
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import type { WeddingConfig } from '@/lib/config'
 
-export default function AttireDetails() {
+export default function AttireDetails({ attire }: { attire: WeddingConfig['attire'] }) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -49,21 +45,21 @@ export default function AttireDetails() {
                 ATTIRE
               </h2>
               <p className="text-2xl md:text-3xl font-serif text-wedding-maroon italic">
-                Strictly Formal
+                {attire.dress}
               </p>
             </div>
 
             {/* Dress Code Details */}
             <div className="space-y-3 md:space-y-2 text-lg md:text-xl text-wedding-maroon-dark text-center">
               <p className="font-medium">
-                <span className="font-semibold">Gentlemen</span> 
-                <span className="mx-2">|</span> 
-                <span className="italic">Barong Tagalog</span>
+                <span className="font-semibold">Gentlemen</span>
+                <span className="mx-2">|</span>
+                <span className="italic">{attire.male}</span>
               </p>
               <p className="font-medium">
-                <span className="font-semibold">Ladies</span> 
-                <span className="mx-2">|</span> 
-                <span className="italic">Long Gown / Dress</span>
+                <span className="font-semibold">Ladies</span>
+                <span className="mx-2">|</span>
+                <span className="italic">{attire.female}</span>
               </p>
             </div>
 
@@ -71,11 +67,11 @@ export default function AttireDetails() {
             <div className="flex flex-col items-center gap-6 md:gap-4 pt-4 md:pt-2">
               {/* Character Illustrations */}
               <div className="flex items-end justify-center gap-1.5 sm:gap-4">
-                {/* Lady in Green Gown */}
+                {/* Lady illustration */}
                 <div className="relative w-32 h-52 sm:w-48 sm:h-72 md:w-56 md:h-96 flex-shrink-0">
                   <Image
-                    src="/green-gown.png"
-                    alt="Lady in Green Gown"
+                    src={`/${attire.images.female}`}
+                    alt="Lady attire"
                     fill
                     className="object-contain"
                     sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 224px"
@@ -94,11 +90,11 @@ export default function AttireDetails() {
                   ))}
                 </div>
 
-                {/* Gentleman in Barong */}
+                {/* Gentleman illustration */}
               <div className="relative w-32 h-52 sm:w-48 sm:h-72 md:w-56 md:h-96 flex-shrink-0">
                   <Image
-                    src="/barong-tagalog.png"
-                    alt="Gentleman in Barong Tagalog"
+                    src={`/${attire.images.male}`}
+                    alt="Gentleman attire"
                     fill
                     className="object-contain"
                     sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 244px"
@@ -109,8 +105,7 @@ export default function AttireDetails() {
               {/* Additional Note */}
               <div className="bg-white/60 backdrop-blur-sm border-l-4 border-wedding-maroon p-4 rounded-r-lg shadow-sm max-w-md mx-auto">
                 <p className="text-sm text-wedding-maroon-dark leading-relaxed text-center">
-                  Please honor the dress code and color palette to ensure a cohesive and 
-                  elegant celebration aesthetic.
+                  {attire.note}
                 </p>
               </div>
             </div>
