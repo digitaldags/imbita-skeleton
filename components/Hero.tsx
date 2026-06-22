@@ -17,45 +17,21 @@ const greatVibes = Great_Vibes({
   weight: '400',
 })
 
-const slides = [
-  { 
-    src: '/hero-1-hd.jpg',
-    mobileSrc: '/hero-1-hd-mobile.jpg',
-    alt: 'Couple photo 1',
-    objectPosition: '30% center',
-    mobileObjectPosition: 'center center'
-  },
-  { 
-    src: '/hero-3-hd.jpg',
-    mobileSrc: '/hero-3-hd-mobile.jpg',
-    alt: 'Couple photo 2',
-    objectPosition: '30% center',
-    mobileObjectPosition: 'center center'
-  },
-  { 
-    src: '/hero-4-hd.jpg',
-    mobileSrc: '/hero-4-hd-mobile.jpg',
-    alt: 'Couple photo 3',
+export default function Hero({
+  couple,
+  images,
+}: {
+  couple: WeddingConfig['couple']
+  images: Array<{ src: string; mobileSrc: string }>
+}) {
+  const slides = images.map((image, index) => ({
+    src: `/${image.src}`,
+    mobileSrc: `/${image.mobileSrc}`,
+    alt: `Couple photo ${index + 1}`,
     objectPosition: 'center center',
-    mobileObjectPosition: 'center center'
-  },
-  { 
-    src: '/hero-5-hd.jpg',
-    mobileSrc: '/hero-5-hd-mobile.jpg',
-    alt: 'Couple photo 4',
-    objectPosition: 'center center',
-    mobileObjectPosition: 'center center'
-  },
-  { 
-    src: '/hero-6-hd.jpg',
-    mobileSrc: '/hero-6-hd-mobile.jpg',
-    alt: 'Couple photo 5',
-    objectPosition: 'center center',
-    mobileObjectPosition: 'center center'
-  },
-]
+    mobileObjectPosition: 'center center',
+  }))
 
-export default function Hero({ couple }: { couple: WeddingConfig['couple'] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(true)
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false)
