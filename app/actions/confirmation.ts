@@ -4,31 +4,17 @@
 
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin as supabase } from '@/lib/supabase'
 import { decodeConfirmationToken } from '@/lib/confirmation'
 import type { RSVP } from '@/lib/types'
 
 /**
- * Extended RSVP type with guest information
+ * Fetch RSVP data by confirmation token
  */
-interface RSVPWithGuest extends RSVP {
-  guest_is_inc?: boolean
-}
-
-/**
- * Guest data subset for is_inc query
- */
-interface GuestIncData {
-  is_inc: boolean
-}
-
-/**
- * Fetch RSVP data by confirmation token with guest information
- */
-export async function getRSVPByToken(token: string): Promise<{ success: boolean; data?: RSVPWithGuest; error?: string }> {
+export async function getRSVPByToken(token: string): Promise<{ success: boolean; data?: RSVP; error?: string }> {
   try {
     const id = decodeConfirmationToken(token)
-    
+
     if (!id) {
       return {
         success: false,
@@ -36,7 +22,6 @@ export async function getRSVPByToken(token: string): Promise<{ success: boolean;
       }
     }
 
-    // Fetch RSVP data
     const { data: rsvpData, error: rsvpError } = await supabase
       .from('rsvps')
       .select('*')
@@ -51,29 +36,9 @@ export async function getRSVPByToken(token: string): Promise<{ success: boolean;
       }
     }
 
-    // Cast to RSVP type for TypeScript
-    const rsvp = rsvpData as RSVP
-
-    // Fetch matching guest data to get is_inc status
-    const { data: guestData } = await supabase
-      .from('guest_list')
-      .select('is_inc')
-      .ilike('first_name', rsvp.first_name)
-      .ilike('last_name', rsvp.last_name)
-      .limit(1)
-
-    // Get the first result if it exists
-    const guestIncInfo = (guestData && guestData.length > 0 ? guestData[0] : null) as GuestIncData | null
-
-    // Combine RSVP and guest data
-    const combinedData: RSVPWithGuest = {
-      ...rsvp,
-      guest_is_inc: guestIncInfo?.is_inc ?? false,
-    }
-
     return {
       success: true,
-      data: combinedData,
+      data: rsvpData as RSVP,
     }
   } catch (error) {
     console.error('Error in getRSVPByToken:', error)

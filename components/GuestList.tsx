@@ -16,14 +16,13 @@ import {
 } from '@/app/actions/guests'
 import type { Guest } from '@/lib/types'
 
-type GuestSortColumn = 'first_name' | 'last_name' | 'enabled' | 'is_inc' | 'created_at' | 'updated_at'
+type GuestSortColumn = 'first_name' | 'last_name' | 'enabled' | 'created_at' | 'updated_at'
 
 interface EditState {
   id: string | null
   first_name: string
   last_name: string
   enabled: boolean
-  is_inc: boolean
 }
 
 export default function GuestList() {
@@ -36,7 +35,6 @@ export default function GuestList() {
     first_name: '',
     last_name: '',
     enabled: true,
-    is_inc: false,
   })
   const [isSaving, setIsSaving] = useState(false)
   const [isDeleting, setIsDeleting] = useState<string | null>(null)
@@ -108,7 +106,6 @@ export default function GuestList() {
       first_name: guest.first_name,
       last_name: guest.last_name,
       enabled: guest.enabled,
-      is_inc: guest.is_inc,
     })
     setActionMessage(null)
   }
@@ -119,7 +116,6 @@ export default function GuestList() {
       first_name: '',
       last_name: '',
       enabled: true,
-      is_inc: false,
     })
   }
 
@@ -132,7 +128,6 @@ export default function GuestList() {
       first_name: editState.first_name,
       last_name: editState.last_name,
       enabled: editState.enabled,
-      is_inc: editState.is_inc,
     })
     setIsSaving(false)
 
@@ -206,12 +201,11 @@ export default function GuestList() {
     const allGuests = await getAllGuestsForExport()
     if (allGuests.length === 0) return
 
-    const headers = ['First Name', 'Last Name', 'Enabled', 'INC Member', 'Created At', 'Updated At']
+    const headers = ['First Name', 'Last Name', 'Enabled', 'Created At', 'Updated At']
     const rows = allGuests.map((guest) => [
       guest.first_name,
       guest.last_name,
       guest.enabled ? 'Yes' : 'No',
-      guest.is_inc ? 'Yes' : 'No',
       new Date(guest.created_at).toLocaleString(),
       guest.updated_at ? new Date(guest.updated_at).toLocaleString() : '—',
     ])
@@ -384,13 +378,6 @@ export default function GuestList() {
                   <span className="text-xs">{sortColumn === 'enabled' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
-                  onClick={() => handleSort('is_inc')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
-                >
-                  INC Member{' '}
-                  <span className="text-xs">{sortColumn === 'is_inc' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
-                </th>
-                <th
                   onClick={() => handleSort('created_at')}
                   className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
@@ -473,36 +460,6 @@ export default function GuestList() {
                         }`}
                       >
                         {guest.enabled ? 'Enabled' : 'Disabled'}
-                      </span>
-                    )}
-                  </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
-                    {editState.id === guest.id ? (
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={editState.is_inc}
-                          onChange={(e) =>
-                            setEditState((prev) => ({
-                              ...prev,
-                              is_inc: e.target.checked,
-                            }))
-                          }
-                          className="w-4 h-4 text-wedding-maroon focus:ring-wedding-maroon border-wedding-beige-dark rounded"
-                        />
-                        <span className="text-sm">
-                          {editState.is_inc ? 'Yes' : 'No'}
-                        </span>
-                      </label>
-                    ) : (
-                      <span
-                        className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
-                          guest.is_inc
-                            ? 'bg-blue-100 text-blue-800'
-                            : 'bg-gray-100 text-gray-800'
-                        }`}
-                      >
-                        {guest.is_inc ? 'Yes' : 'No'}
                       </span>
                     )}
                   </td>

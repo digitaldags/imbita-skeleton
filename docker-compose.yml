@@ -4,20 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        # Pass environment variables to build process
-        SUPABASE_URL: ${SUPABASE_URL}
-        SUPABASE_KEY: ${SUPABASE_KEY}
+        # NEXT_PUBLIC_* must be available at build time (baked into client bundle).
+        # All other vars are injected at runtime via env_file below.
+        NEXT_PUBLIC_WEDDING_DATE: ${NEXT_PUBLIC_WEDDING_DATE}
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     environment:
-      # Runtime environment variables
-      - SUPABASE_URL=${SUPABASE_URL}
-      - SUPABASE_KEY=${SUPABASE_KEY}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - NODE_ENV=production
-      - RESEND_API_KEY=${RESEND_API_KEY}
-      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL}
-      - WEDDING_DATE=${WEDDING_DATE}
     restart: unless-stopped
-    # Platform-agnostic configuration
-    platform: linux/amd64

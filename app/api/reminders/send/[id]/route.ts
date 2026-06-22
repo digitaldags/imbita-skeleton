@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { Resend } from 'resend'
 import { render } from '@react-email/components'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin as supabase } from '@/lib/supabase'
 import { ReminderEmail } from '@/emails/ReminderEmail'
 import type { RSVP } from '@/lib/types'
 
@@ -75,16 +75,6 @@ export async function POST(
     )
   }
 
-  // Look up is_inc using case-insensitive match, same pattern as confirmation.ts
-  const { data: guestData } = await supabase
-    .from('guest_list')
-    .select('is_inc')
-    .ilike('first_name', rsvp.first_name)
-    .ilike('last_name', rsvp.last_name)
-    .limit(1)
-
-  const isInc = guestData && guestData.length > 0 ? (guestData[0] as { is_inc: boolean }).is_inc : false
-
   const resend = new Resend(apiKey)
   const { daysAway, weddingDateFormatted } = computeDaysAway()
 
@@ -92,7 +82,6 @@ export async function POST(
     ReminderEmail({
       firstName: rsvp.first_name,
       attendanceType: rsvp.attendance_type,
-      isInc,
       daysAway,
       weddingDateFormatted,
     })

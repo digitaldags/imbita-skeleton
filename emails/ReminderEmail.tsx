@@ -1,6 +1,6 @@
 /**
  * Wedding reminder email template
- * Content adapts to the guest's attendance_type and is_inc status.
+ * Content adapts to the guest's attendance_type.
  * The "days away" count is computed at send time from NEXT_PUBLIC_WEDDING_DATE.
  */
 
@@ -20,7 +20,6 @@ import type { AttendanceType } from '@/lib/types'
 interface ReminderEmailProps {
   firstName: string
   attendanceType: AttendanceType
-  isInc: boolean
   daysAway: number
   weddingDateFormatted: string
 }
@@ -28,7 +27,6 @@ interface ReminderEmailProps {
 export function ReminderEmail({
   firstName,
   attendanceType,
-  isInc,
   daysAway,
   weddingDateFormatted,
 }: ReminderEmailProps) {
@@ -104,36 +102,6 @@ export function ReminderEmail({
                 ceremony begins.
               </Text>
 
-              {/* Church reminders for non-INC guests only */}
-              {!isInc && (
-                <Section style={reminderBoxStyle}>
-                  <Text style={reminderTitleStyle}>Church Reminders</Text>
-                  <Text style={reminderBodyStyle}>
-                    As our guest, we kindly ask you to observe the following
-                    during the worship service:
-                  </Text>
-                  <Text style={reminderListStyle}>
-                    • Men are seated on the left side of the aisle; women on
-                    the right side.
-                  </Text>
-                  <Text style={reminderListStyle}>
-                    • Remain seated quietly and avoid unnecessary movement
-                    during worship.
-                  </Text>
-                  <Text style={reminderListStyle}>
-                    • Set your mobile phone to silent. Photos and videos inside
-                    the church during the worship service are not allowed.
-                  </Text>
-                  <Text style={reminderListStyle}>
-                    • Respect the prayer by remaining quiet while members
-                    respond with "Yes" or "Amen" as led by the minister.
-                  </Text>
-                  <Text style={reminderFootnoteStyle}>
-                    These practices are part of the worship tradition. Your
-                    respectful presence is appreciated.
-                  </Text>
-                </Section>
-              )}
             </Section>
           )}
 
@@ -279,42 +247,6 @@ const noteTextStyle: React.CSSProperties = {
   fontStyle: 'italic',
   lineHeight: '1.6',
   margin: '0 0 8px 0',
-}
-
-const reminderBoxStyle: React.CSSProperties = {
-  backgroundColor: '#eff6ff',
-  borderLeft: '4px solid #2563eb',
-  borderRadius: '0 6px 6px 0',
-  padding: '16px',
-  marginTop: '12px',
-}
-
-const reminderTitleStyle: React.CSSProperties = {
-  color: '#1e40af',
-  fontSize: '14px',
-  fontWeight: 'bold',
-  margin: '0 0 6px 0',
-}
-
-const reminderBodyStyle: React.CSSProperties = {
-  color: '#3d1a22',
-  fontSize: '13px',
-  margin: '0 0 8px 0',
-}
-
-const reminderListStyle: React.CSSProperties = {
-  color: '#3d1a22',
-  fontSize: '13px',
-  lineHeight: '1.6',
-  margin: '0 0 4px 0',
-  paddingLeft: '4px',
-}
-
-const reminderFootnoteStyle: React.CSSProperties = {
-  color: '#6b7280',
-  fontSize: '12px',
-  fontStyle: 'italic',
-  margin: '8px 0 0 0',
 }
 
 const signatureStyle: React.CSSProperties = {
