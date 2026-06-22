@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Great_Vibes } from 'next/font/google'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import type { WeddingConfig } from '@/lib/config'
 
 const greatVibes = Great_Vibes({
   subsets: ['latin'],
@@ -20,41 +21,41 @@ const slides = [
   { 
     src: '/hero-1-hd.jpg',
     mobileSrc: '/hero-1-hd-mobile.jpg',
-    alt: 'Jann Daniel and Faith - Image 1',
+    alt: 'Couple photo 1',
     objectPosition: '30% center',
     mobileObjectPosition: 'center center'
   },
   { 
     src: '/hero-3-hd.jpg',
     mobileSrc: '/hero-3-hd-mobile.jpg',
-    alt: 'Jann Daniel and Faith - Image 2',
+    alt: 'Couple photo 2',
     objectPosition: '30% center',
     mobileObjectPosition: 'center center'
   },
   { 
     src: '/hero-4-hd.jpg',
     mobileSrc: '/hero-4-hd-mobile.jpg',
-    alt: 'Jann Daniel and Faith - Image 3',
+    alt: 'Couple photo 3',
     objectPosition: 'center center',
     mobileObjectPosition: 'center center'
   },
   { 
     src: '/hero-5-hd.jpg',
     mobileSrc: '/hero-5-hd-mobile.jpg',
-    alt: 'Jann Daniel and Faith - Image 4',
+    alt: 'Couple photo 4',
     objectPosition: 'center center',
     mobileObjectPosition: 'center center'
   },
   { 
     src: '/hero-6-hd.jpg',
     mobileSrc: '/hero-6-hd-mobile.jpg',
-    alt: 'Jann Daniel and Faith - Image 5',
+    alt: 'Couple photo 5',
     objectPosition: 'center center',
     mobileObjectPosition: 'center center'
   },
 ]
 
-export default function Hero() {
+export default function Hero({ couple }: { couple: WeddingConfig['couple'] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(true)
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false)
@@ -154,11 +155,11 @@ export default function Hero() {
           <h1
             className={`${greatVibes.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-wedding-beige-light`}
           >
-            Jann Daniel &amp; Faith
+            {couple.partner1} &amp; {couple.partner2}
           </h1>
 
           <p className="text-xs sm:text-sm md:text-base tracking-[0.25em] uppercase text-wedding-beige-light/90">
-            05 · 02 · 2026 · Manila, Philippines
+            {couple.date} · {couple.location}
           </p>
         </div>
       </div>
