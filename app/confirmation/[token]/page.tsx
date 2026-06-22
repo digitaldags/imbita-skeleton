@@ -115,7 +115,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
             <h2 className="text-2xl font-serif text-wedding-maroon-dark mb-4 text-center">
               Event Details
             </h2>
-            <VenueInfo attendanceType={rsvp.attendance_type} isInc={rsvp.guest_is_inc} />
+            <VenueInfo attendanceType={rsvp.attendance_type} />
           </div>
         )}
 

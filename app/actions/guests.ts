@@ -4,7 +4,7 @@
 
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { supabase, supabaseAdmin } from '@/lib/supabase'
 import type { Database, Guest } from '@/lib/types'
 
 /**
@@ -18,7 +18,7 @@ import type { Database, Guest } from '@/lib/types'
 export async function getGuestsPaginated(
   page: number,
   pageSize: number,
-  sortColumn: 'first_name' | 'last_name' | 'enabled' | 'is_inc' | 'created_at' | 'updated_at' = 'created_at',
+  sortColumn: 'first_name' | 'last_name' | 'enabled' | 'created_at' | 'updated_at' = 'created_at',
   sortDirection: 'asc' | 'desc' = 'desc',
   searchTerm: string = ''
 ): Promise<{
@@ -32,7 +32,7 @@ export async function getGuestsPaginated(
     const to = from + pageSize - 1
     const trimmed = searchTerm.trim()
 
-    let pageQuery = supabase
+    let pageQuery = supabaseAdmin
       .from('guest_list')
       .select('*', { count: 'exact' })
       .order(sortColumn, { ascending: sortDirection === 'asc' })
@@ -47,11 +47,11 @@ export async function getGuestsPaginated(
 
     const [pageResult, enabledResult, disabledResult] = await Promise.all([
       pageQuery,
-      supabase
+      supabaseAdmin
         .from('guest_list')
         .select('id', { count: 'exact', head: true })
         .eq('enabled', true),
-      supabase
+      supabaseAdmin
         .from('guest_list')
         .select('id', { count: 'exact', head: true })
         .eq('enabled', false),
@@ -80,7 +80,7 @@ export async function getGuestsPaginated(
  */
 export async function getAllGuestsForExport(): Promise<Guest[]> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('guest_list')
       .select('*')
       .order('created_at', { ascending: false })
@@ -108,7 +108,7 @@ export async function checkGuestExists(
   last_name: string
 ): Promise<boolean> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('guest_list')
       .select('id, enabled')
       .ilike('first_name', first_name.trim())
@@ -131,11 +131,11 @@ export async function checkGuestExists(
 /**
  * Update an existing guest
  * @param id - Guest ID
- * @param updates - Fields to update (first_name, last_name, enabled, is_inc)
+ * @param updates - Fields to update (first_name, last_name, enabled)
  */
 export async function updateGuest(
   id: string,
-  updates: Partial<Pick<Guest, 'first_name' | 'last_name' | 'enabled' | 'is_inc'>>
+  updates: Partial<Pick<Guest, 'first_name' | 'last_name' | 'enabled'>>
 ): Promise<{ success: boolean; error?: string }> {
   try {
     type GuestUpdate = Database['public']['Tables']['guest_list']['Update'] & {
@@ -158,11 +158,7 @@ export async function updateGuest(
       payload.enabled = updates.enabled
     }
 
-    if (typeof updates.is_inc === 'boolean') {
-      payload.is_inc = updates.is_inc
-    }
-
-    const { error } = await (supabase as any)
+    const { error } = await (supabaseAdmin as any)
       .from('guest_list')
       .update(payload)
       .eq('id', id)
@@ -187,7 +183,7 @@ async function checkGuestInRSVPs(
   last_name: string
 ): Promise<boolean> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('rsvps')
       .select('id')
       .ilike('first_name', first_name.trim())
@@ -214,7 +210,7 @@ async function checkGuestExistsAny(
   last_name: string
 ): Promise<boolean> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('guest_list')
       .select('id')
       .ilike('first_name', first_name.trim())
@@ -239,8 +235,7 @@ async function checkGuestExistsAny(
 export async function createGuest(
   first_name: string,
   last_name: string,
-  enabled: boolean = true,
-  is_inc: boolean = false
+  enabled: boolean = true
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const trimmedFirst = first_name.trim()
@@ -268,10 +263,9 @@ export async function createGuest(
       first_name: trimmedFirst,
       last_name: trimmedLast,
       enabled,
-      is_inc,
     }
 
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from('guest_list')
       .insert(newGuest as any)
 
@@ -295,7 +289,7 @@ export async function deleteGuest(
   id: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const { error } = await supabase.from('guest_list').delete().eq('id', id)
+    const { error } = await supabaseAdmin.from('guest_list').delete().eq('id', id)
 
     if (error) {
       console.error('Error deleting guest:', error)
@@ -372,10 +366,9 @@ export async function importGuestsFromCSV(csvData: string): Promise<{
         first_name: first_name.trim(),
         last_name: last_name.trim(),
         enabled: true,
-        is_inc: false,
       }
 
-      const { error } = await supabase
+      const { error } = await supabaseAdmin
         .from('guest_list')
         .insert(newGuest as any)
 

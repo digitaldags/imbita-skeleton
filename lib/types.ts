@@ -22,7 +22,6 @@ export interface Guest {
   first_name: string
   last_name: string
   enabled: boolean
-  is_inc: boolean
   created_at: string
   updated_at: string | null
 }
@@ -56,13 +55,11 @@ export interface Database {
           first_name: string
           last_name: string
           enabled?: boolean
-          is_inc?: boolean
         }
         Update: Partial<{
           first_name: string
           last_name: string
           enabled: boolean
-          is_inc: boolean
         }>
         Relationships: []
       }

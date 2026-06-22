@@ -4,17 +4,14 @@
  */
 
 import type { AttendanceType } from '@/lib/types'
-import ChurchReminders from '@/components/ChurchReminders'
 
 interface VenueInfoProps {
   attendanceType: AttendanceType
-  isInc?: boolean
 }
 
-export default function VenueInfo({ attendanceType, isInc = false }: VenueInfoProps) {
+export default function VenueInfo({ attendanceType }: VenueInfoProps) {
   const showChurch = attendanceType === 'church' || attendanceType === 'both'
   const showReception = attendanceType === 'reception' || attendanceType === 'both'
-  const showChurchReminders = showChurch && !isInc
 
   return (
     <div className="space-y-8">
@@ -41,10 +38,6 @@ export default function VenueInfo({ attendanceType, isInc = false }: VenueInfoPr
             </p>
           </div>
         </div>
-      )}
-
-      {showChurchReminders && (
-        <ChurchReminders />
       )}
 
       {showReception && (

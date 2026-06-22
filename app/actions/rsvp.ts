@@ -5,13 +5,13 @@
 
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import { generateConfirmationToken } from '@/lib/confirmation'
 import type { Database, RSVPFormData } from '@/lib/types'
 import { checkGuestExists } from '@/app/actions/guests'
 
 async function hasExistingRSVP(first_name: string, last_name: string) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('rsvps')
     .select('id')
     .ilike('first_name', first_name.trim())
@@ -100,9 +100,8 @@ export async function submitRSVP(formData: RSVPFormData): Promise<ActionResult> 
       attendance_type: formData.attending ? formData.attendance_type : 'both',
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('rsvps')
-      // Cast to any to satisfy Supabase generic typing in this context
       .insert(newRSVP as any)
       .select()
       .single()
