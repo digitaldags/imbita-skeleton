@@ -16,7 +16,7 @@ export type WeddingConfig = {
   };
   rsvpDeadline: string;
   hero: {
-    images: string[];
+    images: Array<{ src: string; mobileSrc: string }>;
   };
   sections: {
     ceremony: boolean;

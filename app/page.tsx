@@ -8,7 +8,7 @@ import FAQSection from '@/components/FAQSection'
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-wedding-beige-light">
-      <Hero couple={config.couple} />
+      <Hero couple={config.couple} images={config.hero.images} />
 
       {(config.sections.ceremony || config.sections.reception) && (
         <VenueDetails
