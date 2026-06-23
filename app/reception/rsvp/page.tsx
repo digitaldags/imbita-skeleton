@@ -4,6 +4,7 @@
  */
 
 import Link from 'next/link'
+import { config } from '@/lib/config'
 import RSVPForm from '@/components/RSVPForm'
 
 export default function ReceptionRSVPPage() {
@@ -28,7 +29,12 @@ export default function ReceptionRSVPPage() {
             Please fill out the form below to let us know if you&apos;ll be joining us.
           </p>
 
-          <RSVPForm receptionOnly={true} />
+          <RSVPForm
+            showCeremony={false}
+            showReception={true}
+            ceremonyName={config.ceremony.name}
+            receptionName={config.reception.name}
+          />
         </div>
       </div>
     </div>

@@ -1,16 +1,37 @@
-/**
- * Unit tests for RSVP server actions
- */
-
 import { submitRSVP } from '@/app/actions/rsvp'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
+import { checkGuestExists } from '@/app/actions/guests'
+import { generateConfirmationToken } from '@/lib/confirmation'
 
-// Mock Supabase
 jest.mock('@/lib/supabase', () => ({
-  supabase: {
-    from: jest.fn(),
-  },
+  supabaseAdmin: { from: jest.fn() },
 }))
+jest.mock('@/app/actions/guests')
+jest.mock('@/lib/confirmation')
+
+const mockFrom = supabaseAdmin.from as jest.Mock
+const mockCheckGuestExists = checkGuestExists as jest.MockedFunction<typeof checkGuestExists>
+const mockGenerateToken = generateConfirmationToken as jest.MockedFunction<typeof generateConfirmationToken>
+
+function mockNoExistingRSVP() {
+  mockFrom.mockReturnValueOnce({
+    select: () => ({
+      ilike: () => ({
+        ilike: () => ({
+          limit: () => Promise.resolve({ data: [], error: null }),
+        }),
+      }),
+    }),
+  })
+}
+
+const validFormData = {
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'john@example.com',
+  attending: true,
+  attendance_type: 'both' as const,
+}
 
 describe('submitRSVP', () => {
   beforeEach(() => {
@@ -19,64 +40,57 @@ describe('submitRSVP', () => {
 
   it('validates required fields', async () => {
     const result = await submitRSVP({
-      name: '',
+      ...validFormData,
+      first_name: '',
+      last_name: '',
       email: '',
-      attending: true,
     })
 
     expect(result.success).toBe(false)
-    expect(result.error).toBe('Name and email are required')
+    expect(result.error).toBe('First name, last name, and email are required')
   })
 
   it('validates email format', async () => {
-    const result = await submitRSVP({
-      name: 'John Doe',
-      email: 'invalid-email',
-      attending: true,
-    })
+    mockNoExistingRSVP()
+
+    const result = await submitRSVP({ ...validFormData, email: 'invalid-email' })
 
     expect(result.success).toBe(false)
     expect(result.error).toBe('Invalid email format')
   })
 
   it('submits valid RSVP', async () => {
+    mockNoExistingRSVP()
+    mockCheckGuestExists.mockResolvedValue(true)
+    mockGenerateToken.mockReturnValue('test-token')
+
     const mockInsert = jest.fn().mockReturnValue({
       select: jest.fn().mockReturnValue({
         single: jest.fn().mockResolvedValue({
-          data: {
-            id: '1',
-            name: 'John Doe',
-            email: 'john@example.com',
-            attending: true,
-            created_at: '2024-01-01T00:00:00Z',
-            updated_at: '2024-01-01T00:00:00Z',
-          },
+          data: { id: '1', ...validFormData },
           error: null,
         }),
       }),
     })
+    mockFrom.mockReturnValueOnce({ insert: mockInsert })
 
-    ;(supabase.from as jest.Mock).mockReturnValue({
-      insert: mockInsert,
-    })
-
-    const result = await submitRSVP({
-      name: 'John Doe',
-      email: 'john@example.com',
-      attending: true,
-    })
+    const result = await submitRSVP(validFormData)
 
     expect(result.success).toBe(true)
-    expect(mockInsert).toHaveBeenCalledWith([
-      {
-        name: 'John Doe',
-        email: 'john@example.com',
-        attending: true,
-      },
-    ])
+    expect(result.token).toBe('test-token')
+    expect(mockInsert).toHaveBeenCalledWith({
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john@example.com',
+      attending: true,
+      attendance_type: 'both',
+    })
   })
 
   it('handles database errors', async () => {
+    mockNoExistingRSVP()
+    mockCheckGuestExists.mockResolvedValue(true)
+
     const mockInsert = jest.fn().mockReturnValue({
       select: jest.fn().mockReturnValue({
         single: jest.fn().mockResolvedValue({
@@ -85,19 +99,11 @@ describe('submitRSVP', () => {
         }),
       }),
     })
+    mockFrom.mockReturnValueOnce({ insert: mockInsert })
 
-    ;(supabase.from as jest.Mock).mockReturnValue({
-      insert: mockInsert,
-    })
-
-    const result = await submitRSVP({
-      name: 'John Doe',
-      email: 'john@example.com',
-      attending: true,
-    })
+    const result = await submitRSVP(validFormData)
 
     expect(result.success).toBe(false)
     expect(result.error).toBe('Failed to save RSVP. Please try again.')
   })
 })
-

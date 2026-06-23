@@ -1,23 +1,38 @@
-/**
- * Client component for RSVP form
- * Uses server actions for form submission
- */
-
 'use client'
 
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { submitRSVP } from '@/app/actions/rsvp'
-import type { RSVPFormData } from '@/lib/types'
+import type { RSVPFormData, AttendanceType } from '@/lib/types'
 
-export default function RSVPForm({ receptionOnly = false }: { receptionOnly?: boolean }) {
+export default function RSVPForm({
+  showCeremony,
+  showReception,
+  ceremonyName,
+  receptionName,
+}: {
+  showCeremony: boolean
+  showReception: boolean
+  ceremonyName: string
+  receptionName: string
+}) {
   const router = useRouter()
+
+  const showAttendanceType = showCeremony && showReception
+  const singleType: AttendanceType = showCeremony ? 'ceremony' : 'reception'
+
+  const attendanceOptions: { value: AttendanceType; label: string }[] = [
+    { value: 'both',      label: 'Both Events' },
+    { value: 'ceremony',  label: `${ceremonyName} Only` },
+    { value: 'reception', label: `${receptionName} Only` },
+  ]
+
   const [formData, setFormData] = useState<RSVPFormData>({
     first_name: '',
     last_name: '',
     email: '',
     attending: true,
-    attendance_type: receptionOnly ? 'reception' : 'both',
+    attendance_type: showAttendanceType ? 'both' : singleType,
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
@@ -33,11 +48,8 @@ export default function RSVPForm({ receptionOnly = false }: { receptionOnly?: bo
       const result = await submitRSVP(formData)
 
       if (result.success && result.token) {
-        // Redirect to confirmation page with token from server
         router.push(`/confirmation/${result.token}`)
-        // Note: Don't reset isSubmitting here as we're redirecting away
       } else {
-        // Show error modal if guest not in list
         if (
           result.error?.includes('not in our guest list') ||
           result.error?.includes('guest list')
@@ -50,9 +62,9 @@ export default function RSVPForm({ receptionOnly = false }: { receptionOnly?: bo
       }
     } catch (error) {
       console.error('Form submission error:', error)
-      setMessage({ 
-        type: 'error', 
-        text: 'An unexpected error occurred. Please try again or contact us for assistance.' 
+      setMessage({
+        type: 'error',
+        text: 'An unexpected error occurred. Please try again or contact us for assistance.',
       })
       setIsSubmitting(false)
     }
@@ -137,53 +149,35 @@ export default function RSVPForm({ receptionOnly = false }: { receptionOnly?: bo
           </div>
         </div>
 
-        {formData.attending && !receptionOnly && (
+        {formData.attending && showAttendanceType && (
           <div>
             <label className="block text-sm font-medium text-wedding-maroon-dark mb-3">
               Attendance Preference *
             </label>
             <div className="space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="attendance_type"
-                  value="both"
-                  checked={formData.attendance_type === 'both'}
-                  onChange={(e) => setFormData({ ...formData, attendance_type: e.target.value as 'church' | 'reception' | 'both' })}
-                  className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
-                />
-                <span className="text-wedding-maroon-dark">Both Church & Reception</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="attendance_type"
-                  value="church"
-                  checked={formData.attendance_type === 'church'}
-                  onChange={(e) => setFormData({ ...formData, attendance_type: e.target.value as 'church' | 'reception' | 'both' })}
-                  className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
-                />
-                <span className="text-wedding-maroon-dark">Church Ceremony Only</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="attendance_type"
-                  value="reception"
-                  checked={formData.attendance_type === 'reception'}
-                  onChange={(e) => setFormData({ ...formData, attendance_type: e.target.value as 'church' | 'reception' | 'both' })}
-                  className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
-                />
-                <span className="text-wedding-maroon-dark">Reception Only</span>
-              </label>
+              {attendanceOptions.map((option) => (
+                <label key={option.value} className="flex items-center">
+                  <input
+                    type="radio"
+                    name="attendance_type"
+                    value={option.value}
+                    checked={formData.attendance_type === option.value}
+                    onChange={(e) => setFormData({ ...formData, attendance_type: e.target.value as AttendanceType })}
+                    className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
+                  />
+                  <span className="text-wedding-maroon-dark">{option.label}</span>
+                </label>
+              ))}
             </div>
           </div>
         )}
 
-        {formData.attending && receptionOnly && (
+        {formData.attending && !showAttendanceType && (
           <div className="bg-wedding-beige-light border border-wedding-beige-dark rounded-lg px-4 py-3">
             <p className="text-sm font-medium text-wedding-maroon-dark">
-              Attendance: <span className="font-semibold">Reception Only</span>
+              Attendance: <span className="font-semibold">
+                {showCeremony ? ceremonyName : receptionName}
+              </span>
             </p>
           </div>
         )}

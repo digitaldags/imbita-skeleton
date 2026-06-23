@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getRSVPByToken } from '@/app/actions/confirmation'
+import { config } from '@/lib/config'
 import VenueInfo from '@/components/VenueInfo'
 
 // Force dynamic rendering - no caching
@@ -29,9 +30,9 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
 
   const rsvp = result.data
   const attendanceLabel = {
-    both: 'Both Church & Reception',
-    church: 'Church Ceremony Only',
-    reception: 'Reception Only',
+    both: `${config.ceremony.name} & ${config.reception.name}`,
+    ceremony: `${config.ceremony.name} Only`,
+    reception: `${config.reception.name} Only`,
   }[rsvp.attendance_type]
 
   return (

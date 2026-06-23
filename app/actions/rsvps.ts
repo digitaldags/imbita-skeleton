@@ -19,7 +19,7 @@ import type { Database, RSVP } from '@/lib/types'
 export async function getRSVPsPaginated(
   page: number,
   pageSize: number,
-  filter: 'all' | 'church' | 'reception' | 'both',
+  filter: 'all' | 'ceremony' | 'reception' | 'both',
   sortColumn: 'first_name' | 'last_name' | 'email' | 'attending' | 'attendance_type' | 'created_at' | 'updated_at' = 'created_at',
   sortDirection: 'asc' | 'desc' = 'desc',
   searchTerm: string = ''
@@ -29,11 +29,11 @@ export async function getRSVPsPaginated(
   totalAll: number
   totalAttending: number
   totalNotAttending: number
-  totalChurch: number
+  totalCeremony: number
   totalReception: number
   totalBoth: number
 }> {
-  const empty = { data: [], totalFiltered: 0, totalAll: 0, totalAttending: 0, totalNotAttending: 0, totalChurch: 0, totalReception: 0, totalBoth: 0 }
+  const empty = { data: [], totalFiltered: 0, totalAll: 0, totalAttending: 0, totalNotAttending: 0, totalCeremony: 0, totalReception: 0, totalBoth: 0 }
   try {
     const from = page * pageSize
     const to = from + pageSize - 1
@@ -56,12 +56,12 @@ export async function getRSVPsPaginated(
 
     pageQuery = pageQuery.range(from, to)
 
-    const [pageResult, allResult, attendingResult, notAttendingResult, churchResult, receptionResult, bothResult] = await Promise.all([
+    const [pageResult, allResult, attendingResult, notAttendingResult, ceremonyResult, receptionResult, bothResult] = await Promise.all([
       pageQuery,
       supabase.from('rsvps').select('id', { count: 'exact', head: true }),
       supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', true),
       supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', false),
-      supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', true).eq('attendance_type', 'church'),
+      supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', true).eq('attendance_type', 'ceremony'),
       supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', true).eq('attendance_type', 'reception'),
       supabase.from('rsvps').select('id', { count: 'exact', head: true }).eq('attending', true).eq('attendance_type', 'both'),
     ])
@@ -77,7 +77,7 @@ export async function getRSVPsPaginated(
       totalAll: allResult.count ?? 0,
       totalAttending: attendingResult.count ?? 0,
       totalNotAttending: notAttendingResult.count ?? 0,
-      totalChurch: churchResult.count ?? 0,
+      totalCeremony: ceremonyResult.count ?? 0,
       totalReception: receptionResult.count ?? 0,
       totalBoth: bothResult.count ?? 0,
     }
@@ -92,7 +92,7 @@ export async function getRSVPsPaginated(
  * @param filter - Attendance type filter ('all' | 'church' | 'reception' | 'both')
  */
 export async function getAllRSVPsForExport(
-  filter: 'all' | 'church' | 'reception' | 'both'
+  filter: 'all' | 'ceremony' | 'reception' | 'both'
 ): Promise<RSVP[]> {
   try {
     let query = supabase
@@ -152,7 +152,7 @@ export async function updateRSVP(
       payload.attending = updates.attending
     }
 
-    if (updates.attendance_type && ['church', 'reception', 'both'].includes(updates.attendance_type)) {
+    if (updates.attendance_type && ['ceremony', 'reception', 'both'].includes(updates.attendance_type)) {
       payload.attendance_type = updates.attendance_type
     }
 

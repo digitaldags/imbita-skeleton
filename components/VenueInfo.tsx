@@ -10,7 +10,7 @@ interface VenueInfoProps {
 }
 
 export default function VenueInfo({ attendanceType }: VenueInfoProps) {
-  const showChurch = attendanceType === 'church' || attendanceType === 'both'
+  const showChurch = attendanceType === 'ceremony' || attendanceType === 'both'
   const showReception = attendanceType === 'reception' || attendanceType === 'both'
 
   return (

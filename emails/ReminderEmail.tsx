@@ -30,7 +30,7 @@ export function ReminderEmail({
   daysAway,
   weddingDateFormatted,
 }: ReminderEmailProps) {
-  const showChurch = attendanceType === 'church' || attendanceType === 'both'
+  const showChurch = attendanceType === 'ceremony' || attendanceType === 'both'
   const showReception = attendanceType === 'reception' || attendanceType === 'both'
 
   const daysLabel =
