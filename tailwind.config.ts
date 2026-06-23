@@ -1,4 +1,12 @@
 import type { Config } from 'tailwindcss'
+import fs from 'fs'
+import path from 'path'
+import yaml from 'js-yaml'
+
+const raw = fs.readFileSync(path.join(process.cwd(), 'wedding.config.yaml'), 'utf8')
+const weddingConfig = yaml.load(raw) as {
+  theme: { primary: string; secondary: string; accent: string }
+}
 
 const config: Config = {
   content: [
@@ -34,11 +42,11 @@ const config: Config = {
           900: '#4f3636',
         },
         wedding: {
+          primary: weddingConfig.theme.primary,
+          secondary: weddingConfig.theme.secondary,
+          accent: weddingConfig.theme.accent,
           beige: '#d4c4b0',
-          'beige-light': '#f5f0e8',
           'beige-dark': '#8a6b58',
-          maroon: '#8a5858',
-          'maroon-dark': '#5f3f3f',
           'maroon-light': '#b88888',
         },
       },

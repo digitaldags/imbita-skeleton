@@ -264,13 +264,13 @@ export default function AdminDashboard() {
   return (
     <div className="bg-white rounded-lg shadow-lg p-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-serif text-wedding-maroon-dark">RSVP Responses</h1>
+        <h1 className="text-3xl font-serif text-wedding-accent">RSVP Responses</h1>
       </div>
 
       <div className="mb-6 flex gap-4 flex-wrap">
-        <div className="bg-wedding-beige-light p-4 rounded-lg flex-1 min-w-[200px]">
-          <div className="text-sm text-wedding-maroon">Total RSVPs</div>
-          <div className="text-2xl font-bold text-wedding-maroon-dark">{totalAll}</div>
+        <div className="bg-wedding-secondary p-4 rounded-lg flex-1 min-w-[200px]">
+          <div className="text-sm text-wedding-primary">Total RSVPs</div>
+          <div className="text-2xl font-bold text-wedding-accent">{totalAll}</div>
         </div>
         <div className="bg-green-50 p-4 rounded-lg flex-1 min-w-[200px]">
           <div className="text-sm text-green-700">Attending</div>
@@ -299,7 +299,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="mb-4 flex justify-between items-center flex-wrap gap-4">
-        <h2 className="text-xl font-semibold text-wedding-maroon-dark">RSVP List</h2>
+        <h2 className="text-xl font-semibold text-wedding-accent">RSVP List</h2>
         <div className="flex gap-2 items-center flex-wrap">
           <div className="relative">
             <input
@@ -307,19 +307,19 @@ export default function AdminDashboard() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by name..."
-              className="pl-3 pr-8 py-2 border border-wedding-beige-dark rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white text-wedding-maroon-dark"
+              className="pl-3 pr-8 py-2 border border-wedding-beige-dark rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent bg-white text-wedding-accent"
             />
             {searchTerm && (
               <button
                 type="button"
                 onClick={() => setSearchTerm('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-wedding-maroon/60 hover:text-wedding-maroon text-sm leading-none"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-wedding-primary/60 hover:text-wedding-primary text-sm leading-none"
               >
                 ✕
               </button>
             )}
           </div>
-          <label className="text-sm text-wedding-maroon-dark">Filter:</label>
+          <label className="text-sm text-wedding-accent">Filter:</label>
           <select
             value={attendanceFilter}
             onChange={(e) => {
@@ -353,7 +353,7 @@ export default function AdminDashboard() {
                 setCurrentPage(0)
               }
             }}
-            className="px-3 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white text-wedding-maroon-dark"
+            className="px-3 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent bg-white text-wedding-accent"
           >
             <option value="all">All Attendees</option>
             <option value="ceremony">Ceremony Only</option>
@@ -363,14 +363,14 @@ export default function AdminDashboard() {
           <button
             onClick={handleSendAll}
             disabled={isSendingAll || totalAttending === 0}
-            className="bg-wedding-maroon text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-wedding-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSendingAll ? 'Sending...' : 'Send All Reminders'}
           </button>
           <button
             onClick={handleExport}
             disabled={totalAll === 0}
-            className="bg-wedding-maroon text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-wedding-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Export CSV
           </button>
@@ -378,21 +378,21 @@ export default function AdminDashboard() {
       </div>
 
       {actionMessage && (
-        <div className="mb-4 p-3 bg-wedding-beige-light text-wedding-maroon-dark border border-wedding-beige-dark rounded-lg">
+        <div className="mb-4 p-3 bg-wedding-secondary text-wedding-accent border border-wedding-beige-dark rounded-lg">
           {actionMessage}
         </div>
       )}
 
       {isLoading ? (
-        <div className="text-center py-8 text-wedding-maroon">Loading...</div>
+        <div className="text-center py-8 text-wedding-primary">Loading...</div>
       ) : error ? (
         <div className="text-center py-8 text-red-600">{error}</div>
       ) : totalAll === 0 ? (
-        <div className="text-center py-8 text-wedding-maroon">No RSVPs yet.</div>
+        <div className="text-center py-8 text-wedding-primary">No RSVPs yet.</div>
       ) : rsvps.length === 0 && debouncedSearch ? (
-        <div className="text-center py-8 text-wedding-maroon">No RSVPs match your search.</div>
+        <div className="text-center py-8 text-wedding-primary">No RSVPs match your search.</div>
       ) : rsvps.length === 0 ? (
-        <div className="text-center py-8 text-wedding-maroon">No RSVPs match the selected filter.</div>
+        <div className="text-center py-8 text-wedding-primary">No RSVPs match the selected filter.</div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
@@ -400,62 +400,62 @@ export default function AdminDashboard() {
               <tr className="bg-wedding-beige">
                 <th
                   onClick={() => handleSort('first_name')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   First Name{' '}
                   <span className="text-xs">{sortColumn === 'first_name' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('last_name')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Last Name{' '}
                   <span className="text-xs">{sortColumn === 'last_name' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('email')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Email{' '}
                   <span className="text-xs">{sortColumn === 'email' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('attending')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Attending{' '}
                   <span className="text-xs">{sortColumn === 'attending' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('attendance_type')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Attendance Type{' '}
                   <span className="text-xs">{sortColumn === 'attendance_type' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('created_at')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Submitted{' '}
                   <span className="text-xs">{sortColumn === 'created_at' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('updated_at')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Updated{' '}
                   <span className="text-xs">{sortColumn === 'updated_at' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
-                <th className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark">
+                <th className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
               {rsvps.map((rsvp) => (
-                <tr key={rsvp.id} className="hover:bg-wedding-beige-light">
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                <tr key={rsvp.id} className="hover:bg-wedding-secondary">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <input
                         type="text"
@@ -466,13 +466,13 @@ export default function AdminDashboard() {
                             first_name: e.target.value,
                           }))
                         }
-                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                       />
                     ) : (
                       rsvp.first_name
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <input
                         type="text"
@@ -483,13 +483,13 @@ export default function AdminDashboard() {
                             last_name: e.target.value,
                           }))
                         }
-                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                       />
                     ) : (
                       rsvp.last_name
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <input
                         type="email"
@@ -500,13 +500,13 @@ export default function AdminDashboard() {
                             email: e.target.value,
                           }))
                         }
-                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                       />
                     ) : (
                       rsvp.email
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <select
                         value={editState.attending ? 'yes' : 'no'}
@@ -516,7 +516,7 @@ export default function AdminDashboard() {
                             attending: e.target.value === 'yes',
                           }))
                         }
-                        className="px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white"
+                        className="px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent bg-white"
                       >
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -527,7 +527,7 @@ export default function AdminDashboard() {
                       <span className="text-red-700 font-semibold">No</span>
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <select
                         value={editState.attendance_type}
@@ -538,41 +538,41 @@ export default function AdminDashboard() {
                           }))
                         }
                         disabled={!editState.attending}
-                        className="px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white disabled:opacity-50"
+                        className="px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent bg-white disabled:opacity-50"
                       >
                         <option value="both">Both</option>
                         <option value="ceremony">Ceremony Only</option>
                         <option value="reception">Reception Only</option>
                       </select>
                     ) : rsvp.attending ? (
-                      <span className="text-wedding-maroon-dark">{getAttendanceTypeLabel(rsvp.attendance_type)}</span>
+                      <span className="text-wedding-accent">{getAttendanceTypeLabel(rsvp.attendance_type)}</span>
                     ) : (
                       <span className="text-gray-400">—</span>
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {new Date(rsvp.created_at).toLocaleString()}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {rsvp.updated_at
                       ? new Date(rsvp.updated_at).toLocaleString()
                       : '—'}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === rsvp.id ? (
                       <div className="flex gap-2">
                         <button
                           type="button"
                           onClick={saveEdit}
                           disabled={isSaving}
-                          className="px-3 py-1 text-sm rounded-md bg-wedding-maroon text-white hover:bg-wedding-maroon-dark disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="px-3 py-1 text-sm rounded-md bg-wedding-primary text-white hover:bg-wedding-accent disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {isSaving ? 'Saving...' : 'Save'}
                         </button>
                         <button
                           type="button"
                           onClick={cancelEdit}
-                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light"
+                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary"
                         >
                           Cancel
                         </button>
@@ -582,7 +582,7 @@ export default function AdminDashboard() {
                         <button
                           type="button"
                           onClick={() => startEdit(rsvp)}
-                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light"
+                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary"
                         >
                           Edit
                         </button>
@@ -628,7 +628,7 @@ export default function AdminDashboard() {
       {/* Pagination controls */}
       {!isLoading && !error && totalAll > 0 && (
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-wedding-maroon">
+          <p className="text-sm text-wedding-primary">
             Showing {currentPage * PAGE_SIZE + 1}–{Math.min((currentPage + 1) * PAGE_SIZE, totalFiltered)} of {totalFiltered} RSVP{totalFiltered !== 1 ? 's' : ''}
             {attendanceFilter !== 'all' && ` (filtered from ${totalAll} total)`}
           </p>
@@ -642,18 +642,18 @@ export default function AdminDashboard() {
               type="button"
               onClick={() => setCurrentPage((p: number) => p - 1)}
               disabled={currentPage === 0 || isLoading || !!editState.id}
-              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
             >
               ← Previous
             </button>
-            <span className="text-sm text-wedding-maroon-dark font-medium">
+            <span className="text-sm text-wedding-accent font-medium">
               Page {currentPage + 1} of {Math.max(1, Math.ceil(totalFiltered / PAGE_SIZE))}
             </span>
             <button
               type="button"
               onClick={() => setCurrentPage((p: number) => p + 1)}
               disabled={(currentPage + 1) * PAGE_SIZE >= totalFiltered || isLoading || !!editState.id}
-              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
             >
               Next →
             </button>

@@ -11,13 +11,13 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onT
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full py-5 px-6 flex items-start justify-between gap-4 text-left hover:bg-wedding-beige-light/30 transition-colors duration-200 group"
+        className="w-full py-5 px-6 flex items-start justify-between gap-4 text-left hover:bg-wedding-secondary/30 transition-colors duration-200 group"
       >
-        <span className="text-lg font-medium text-wedding-maroon-dark group-hover:text-wedding-maroon transition-colors">
+        <span className="text-lg font-medium text-wedding-accent group-hover:text-wedding-primary transition-colors">
           {faq.question}
         </span>
         <span
-          className={`flex-shrink-0 w-6 h-6 flex items-center justify-center text-wedding-maroon transition-transform duration-300 ${
+          className={`flex-shrink-0 w-6 h-6 flex items-center justify-center text-wedding-primary transition-transform duration-300 ${
             isOpen ? 'rotate-180' : ''
           }`}
           aria-hidden="true"
@@ -45,7 +45,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onT
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-6 pb-5 text-base text-wedding-maroon-dark/80 leading-relaxed">
+        <div className="px-6 pb-5 text-base text-wedding-accent/80 leading-relaxed">
           {faq.answer}
         </div>
       </div>
@@ -61,15 +61,15 @@ export default function FAQSection({ faqs }: { faqs: WeddingConfig['faq'] }) {
   }
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-wedding-beige-light py-20 md:py-28">
+    <section className="w-full bg-gradient-to-b from-white to-wedding-secondary py-20 md:py-28">
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-wedding-maroon-dark mb-4 tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-serif text-wedding-accent mb-4 tracking-wide">
             Frequently Asked Questions
           </h2>
-          <div className="w-24 h-1 bg-wedding-maroon mx-auto my-6"></div>
-          <p className="text-lg text-wedding-maroon-dark/70 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-wedding-primary mx-auto my-6"></div>
+          <p className="text-lg text-wedding-accent/70 max-w-2xl mx-auto">
             We&apos;ve compiled answers to some common questions. If you have any other concerns, please
             feel free to reach out to us.
           </p>
@@ -89,7 +89,7 @@ export default function FAQSection({ faqs }: { faqs: WeddingConfig['faq'] }) {
 
         {/* Bottom Note */}
         <div className="text-center mt-8">
-          <p className="text-sm text-wedding-maroon-dark/60 italic">
+          <p className="text-sm text-wedding-accent/60 italic">
             Still have questions? Feel free to message us on Facebook!
           </p>
         </div>

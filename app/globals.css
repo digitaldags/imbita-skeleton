@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-wedding-beige-light text-wedding-maroon-dark;
+    @apply bg-wedding-secondary text-wedding-accent;
   }
 }
 

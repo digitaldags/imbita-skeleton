@@ -14,17 +14,17 @@ export default function RSVPPage() {
           <div className="mb-8">
             <Link
               href="/"
-              className="text-wedding-maroon hover:text-wedding-maroon-dark transition-colors"
+              className="text-wedding-primary hover:text-wedding-accent transition-colors"
             >
               ← Back to home
             </Link>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-serif text-wedding-maroon-dark mb-2">
+          <h1 className="text-3xl md:text-4xl font-serif text-wedding-accent mb-2">
             RSVP
           </h1>
-          <div className="w-24 h-1 bg-wedding-maroon my-4"></div>
-          <p className="text-wedding-maroon mb-8">
+          <div className="w-24 h-1 bg-wedding-primary my-4"></div>
+          <p className="text-wedding-primary mb-8">
             Please fill out the form below to let us know if you&apos;ll be joining us.
           </p>
 

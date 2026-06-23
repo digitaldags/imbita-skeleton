@@ -279,7 +279,7 @@ export default function GuestList() {
   return (
     <div className="bg-white rounded-lg shadow-lg p-8">
       <div className="mb-4 flex flex-wrap gap-3 justify-between items-center">
-        <h2 className="text-xl font-semibold text-wedding-maroon-dark">Guest List</h2>
+        <h2 className="text-xl font-semibold text-wedding-accent">Guest List</h2>
         <div className="flex flex-wrap gap-2 items-center">
           <div className="relative">
             <input
@@ -287,13 +287,13 @@ export default function GuestList() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by name..."
-              className="pl-3 pr-8 py-2 border border-wedding-beige-dark rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white text-wedding-maroon-dark"
+              className="pl-3 pr-8 py-2 border border-wedding-beige-dark rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent bg-white text-wedding-accent"
             />
             {searchTerm && (
               <button
                 type="button"
                 onClick={() => setSearchTerm('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-wedding-maroon/60 hover:text-wedding-maroon text-sm leading-none"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-wedding-primary/60 hover:text-wedding-primary text-sm leading-none"
               >
                 ✕
               </button>
@@ -301,7 +301,7 @@ export default function GuestList() {
           </div>
           <button
             onClick={handleOpenAddModal}
-            className="bg-wedding-maroon text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200"
+            className="bg-wedding-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200"
           >
             Add Guest
           </button>
@@ -314,7 +314,7 @@ export default function GuestList() {
           <button
             onClick={handleExport}
             disabled={totalCount === 0}
-            className="bg-wedding-maroon/80 text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-maroon transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-wedding-primary/80 text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-primary transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Export CSV
           </button>
@@ -324,8 +324,8 @@ export default function GuestList() {
       {/* Count Cards */}
       <div className="mb-6 flex gap-4 flex-wrap">
         <div className="bg-wedding-beige p-4 rounded-lg flex-1 min-w-[200px]">
-          <div className="text-sm text-wedding-maroon-dark">Total Guests</div>
-          <div className="text-2xl font-bold text-wedding-maroon-dark">{totalCount}</div>
+          <div className="text-sm text-wedding-accent">Total Guests</div>
+          <div className="text-2xl font-bold text-wedding-accent">{totalCount}</div>
         </div>
         <div className="bg-green-50 p-4 rounded-lg flex-1 min-w-[200px]">
           <div className="text-sm text-green-700">Enabled</div>
@@ -338,19 +338,19 @@ export default function GuestList() {
       </div>
 
       {actionMessage && (
-        <div className="mb-4 p-3 bg-wedding-beige-light text-wedding-maroon-dark border border-wedding-beige-dark rounded-lg">
+        <div className="mb-4 p-3 bg-wedding-secondary text-wedding-accent border border-wedding-beige-dark rounded-lg">
           {actionMessage}
         </div>
       )}
 
       {isLoading ? (
-        <div className="text-center py-8 text-wedding-maroon">Loading...</div>
+        <div className="text-center py-8 text-wedding-primary">Loading...</div>
       ) : error ? (
         <div className="text-center py-8 text-red-600">{error}</div>
       ) : guests.length === 0 && !debouncedSearch ? (
-        <div className="text-center py-8 text-wedding-maroon">No guests yet.</div>
+        <div className="text-center py-8 text-wedding-primary">No guests yet.</div>
       ) : guests.length === 0 ? (
-        <div className="text-center py-8 text-wedding-maroon">No guests match your search.</div>
+        <div className="text-center py-8 text-wedding-primary">No guests match your search.</div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
@@ -358,48 +358,48 @@ export default function GuestList() {
               <tr className="bg-wedding-beige">
                 <th
                   onClick={() => handleSort('first_name')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   First Name{' '}
                   <span className="text-xs">{sortColumn === 'first_name' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('last_name')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Last Name{' '}
                   <span className="text-xs">{sortColumn === 'last_name' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('enabled')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Status{' '}
                   <span className="text-xs">{sortColumn === 'enabled' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('created_at')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Created{' '}
                   <span className="text-xs">{sortColumn === 'created_at' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
                 <th
                   onClick={() => handleSort('updated_at')}
-                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
+                  className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent cursor-pointer select-none hover:bg-wedding-beige whitespace-nowrap"
                 >
                   Updated{' '}
                   <span className="text-xs">{sortColumn === 'updated_at' ? (sortDirection === 'asc' ? '↑' : '↓') : '↕'}</span>
                 </th>
-                <th className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-maroon-dark">
+                <th className="border border-wedding-beige-dark px-4 py-2 text-left text-wedding-accent">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
               {guests.map((guest) => (
-                <tr key={guest.id} className="hover:bg-wedding-beige-light">
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                <tr key={guest.id} className="hover:bg-wedding-secondary">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === guest.id ? (
                       <input
                         type="text"
@@ -410,13 +410,13 @@ export default function GuestList() {
                             first_name: e.target.value,
                           }))
                         }
-                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                       />
                     ) : (
                       guest.first_name
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === guest.id ? (
                       <input
                         type="text"
@@ -427,13 +427,13 @@ export default function GuestList() {
                             last_name: e.target.value,
                           }))
                         }
-                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                        className="w-full px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                       />
                     ) : (
                       guest.last_name
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === guest.id ? (
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
@@ -445,7 +445,7 @@ export default function GuestList() {
                               enabled: e.target.checked,
                             }))
                           }
-                          className="w-4 h-4 text-wedding-maroon focus:ring-wedding-maroon border-wedding-beige-dark rounded"
+                          className="w-4 h-4 text-wedding-primary focus:ring-wedding-primary border-wedding-beige-dark rounded"
                         />
                         <span className="text-sm">
                           {editState.enabled ? 'Enabled' : 'Disabled'}
@@ -463,29 +463,29 @@ export default function GuestList() {
                       </span>
                     )}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {new Date(guest.created_at).toLocaleString()}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {guest.updated_at
                       ? new Date(guest.updated_at).toLocaleString()
                       : '—'}
                   </td>
-                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-maroon">
+                  <td className="border border-wedding-beige-dark px-4 py-2 text-wedding-primary">
                     {editState.id === guest.id ? (
                       <div className="flex gap-2">
                         <button
                           type="button"
                           onClick={saveEdit}
                           disabled={isSaving}
-                          className="px-3 py-1 text-sm rounded-md bg-wedding-maroon text-white hover:bg-wedding-maroon-dark disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="px-3 py-1 text-sm rounded-md bg-wedding-primary text-white hover:bg-wedding-accent disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {isSaving ? 'Saving...' : 'Save'}
                         </button>
                         <button
                           type="button"
                           onClick={cancelEdit}
-                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light"
+                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary"
                         >
                           Cancel
                         </button>
@@ -495,7 +495,7 @@ export default function GuestList() {
                         <button
                           type="button"
                           onClick={() => startEdit(guest)}
-                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light"
+                          className="px-3 py-1 text-sm rounded-md border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary"
                         >
                           Edit
                         </button>
@@ -520,7 +520,7 @@ export default function GuestList() {
       {/* Pagination controls */}
       {!isLoading && !error && totalCount > 0 && (
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-wedding-maroon">
+          <p className="text-sm text-wedding-primary">
             Showing {currentPage * PAGE_SIZE + 1}–{Math.min((currentPage + 1) * PAGE_SIZE, totalCount)} of {totalCount} guest{totalCount !== 1 ? 's' : ''}
           </p>
           <div className="flex items-center gap-3">
@@ -533,18 +533,18 @@ export default function GuestList() {
               type="button"
               onClick={() => setCurrentPage((p: number) => p - 1)}
               disabled={currentPage === 0 || isLoading || !!editState.id}
-              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
             >
               ← Previous
             </button>
-            <span className="text-sm text-wedding-maroon-dark font-medium">
+            <span className="text-sm text-wedding-accent font-medium">
               Page {currentPage + 1} of {Math.max(1, Math.ceil(totalCount / PAGE_SIZE))}
             </span>
             <button
               type="button"
               onClick={() => setCurrentPage((p: number) => p + 1)}
               disabled={(currentPage + 1) * PAGE_SIZE >= totalCount || isLoading || !!editState.id}
-              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-maroon hover:bg-wedding-beige-light disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-4 py-2 text-sm rounded-lg border border-wedding-beige-dark text-wedding-primary hover:bg-wedding-secondary disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
             >
               Next →
             </button>
@@ -557,10 +557,10 @@ export default function GuestList() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="mb-4">
-              <h3 className="text-2xl font-serif text-wedding-maroon-dark">
+              <h3 className="text-2xl font-serif text-wedding-accent">
                 Add Guest
               </h3>
-              <p className="text-sm text-wedding-maroon">
+              <p className="text-sm text-wedding-primary">
                 Add a pre-approved guest to the list.
               </p>
             </div>
@@ -568,7 +568,7 @@ export default function GuestList() {
               <div>
                 <label
                   htmlFor="new_first_name"
-                  className="block text-sm font-medium text-wedding-maroon-dark mb-2"
+                  className="block text-sm font-medium text-wedding-accent mb-2"
                 >
                   First Name *
                 </label>
@@ -580,14 +580,14 @@ export default function GuestList() {
                   onChange={(e) =>
                     setNewGuest((prev) => ({ ...prev, first_name: e.target.value }))
                   }
-                  className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                  className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                   placeholder="First name"
                 />
               </div>
               <div>
                 <label
                   htmlFor="new_last_name"
-                  className="block text-sm font-medium text-wedding-maroon-dark mb-2"
+                  className="block text-sm font-medium text-wedding-accent mb-2"
                 >
                   Last Name *
                 </label>
@@ -599,7 +599,7 @@ export default function GuestList() {
                   onChange={(e) =>
                     setNewGuest((prev) => ({ ...prev, last_name: e.target.value }))
                   }
-                  className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                  className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                   placeholder="Last name"
                 />
               </div>
@@ -614,14 +614,14 @@ export default function GuestList() {
                 <button
                   type="submit"
                   disabled={isCreating}
-                  className="flex-1 bg-wedding-maroon text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-wedding-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isCreating ? 'Adding...' : 'Add Guest'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="flex-1 border border-wedding-beige-dark text-wedding-maroon px-4 py-2 rounded-lg font-semibold hover:bg-wedding-beige-light transition-colors duration-200"
+                  className="flex-1 border border-wedding-beige-dark text-wedding-primary px-4 py-2 rounded-lg font-semibold hover:bg-wedding-secondary transition-colors duration-200"
                 >
                   Cancel
                 </button>
@@ -636,13 +636,13 @@ export default function GuestList() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="mb-4">
-              <h3 className="text-2xl font-serif text-wedding-maroon-dark">
+              <h3 className="text-2xl font-serif text-wedding-accent">
                 Import Guests from CSV
               </h3>
-              <p className="text-sm text-wedding-maroon mt-2">
+              <p className="text-sm text-wedding-primary mt-2">
                 Upload a CSV file with columns: <strong>first_name, last_name</strong>
               </p>
-              <p className="text-xs text-wedding-maroon/70 mt-1">
+              <p className="text-xs text-wedding-primary/70 mt-1">
                 Existing guests will be skipped. All imported guests will be enabled by default.
               </p>
             </div>
@@ -650,7 +650,7 @@ export default function GuestList() {
             <div className="mb-4">
               <label
                 htmlFor="csv_file"
-                className="block text-sm font-medium text-wedding-maroon-dark mb-2"
+                className="block text-sm font-medium text-wedding-accent mb-2"
               >
                 Select CSV File
               </label>
@@ -660,7 +660,7 @@ export default function GuestList() {
                 accept=".csv"
                 onChange={handleImportCSV}
                 disabled={isImporting}
-                className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
               />
             </div>
 
@@ -701,7 +701,7 @@ export default function GuestList() {
               <button
                 type="button"
                 onClick={() => setIsImportModalOpen(false)}
-                className="flex-1 border border-wedding-beige-dark text-wedding-maroon px-4 py-2 rounded-lg font-semibold hover:bg-wedding-beige-light transition-colors duration-200"
+                className="flex-1 border border-wedding-beige-dark text-wedding-primary px-4 py-2 rounded-lg font-semibold hover:bg-wedding-secondary transition-colors duration-200"
               >
                 Close
               </button>

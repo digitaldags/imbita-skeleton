@@ -36,7 +36,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
   }[rsvp.attendance_type]
 
   return (
-    <div className="min-h-screen bg-wedding-beige-light py-12 px-4">
+    <div className="min-h-screen bg-wedding-secondary py-12 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Success Header */}
         <div className="text-center mb-8 animate-fade-in-up">
@@ -55,10 +55,10 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
               />
             </svg>
           </div>
-          <h1 className="text-3xl md:text-4xl font-serif text-wedding-maroon-dark mb-2">
+          <h1 className="text-3xl md:text-4xl font-serif text-wedding-accent mb-2">
             {rsvp.attending ? 'RSVP Confirmed!' : 'Response Received'}
           </h1>
-          <p className="text-lg text-wedding-maroon">
+          <p className="text-lg text-wedding-primary">
             {rsvp.attending
               ? 'Your RSVP has been successfully recorded.'
               : 'Thank you for letting us know.'}
@@ -67,26 +67,26 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
 
         {/* RSVP Details Card */}
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-6 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-          <h2 className="text-xl font-semibold text-wedding-maroon-dark mb-4 border-b border-wedding-beige-dark pb-2">
+          <h2 className="text-xl font-semibold text-wedding-accent mb-4 border-b border-wedding-beige-dark pb-2">
             Your Details
           </h2>
-          
+
           <div className="space-y-3">
             <div>
-              <span className="text-sm font-medium text-wedding-maroon/70 block mb-1">Guest Name</span>
-              <p className="text-lg text-wedding-maroon-dark">
+              <span className="text-sm font-medium text-wedding-primary/70 block mb-1">Guest Name</span>
+              <p className="text-lg text-wedding-accent">
                 {rsvp.first_name} {rsvp.last_name}
               </p>
             </div>
 
             <div>
-              <span className="text-sm font-medium text-wedding-maroon/70 block mb-1">Email</span>
-              <p className="text-wedding-maroon-dark">{rsvp.email}</p>
+              <span className="text-sm font-medium text-wedding-primary/70 block mb-1">Email</span>
+              <p className="text-wedding-accent">{rsvp.email}</p>
             </div>
 
             <div>
-              <span className="text-sm font-medium text-wedding-maroon/70 block mb-1">Attendance Status</span>
-              <p className="text-wedding-maroon-dark">
+              <span className="text-sm font-medium text-wedding-primary/70 block mb-1">Attendance Status</span>
+              <p className="text-wedding-accent">
                 {rsvp.attending ? (
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                     Attending
@@ -101,10 +101,10 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
 
             {rsvp.attending && (
               <div>
-                <span className="text-sm font-medium text-wedding-maroon/70 block mb-1">
+                <span className="text-sm font-medium text-wedding-primary/70 block mb-1">
                   Attending
                 </span>
-                <p className="text-wedding-maroon-dark font-medium">{attendanceLabel}</p>
+                <p className="text-wedding-accent font-medium">{attendanceLabel}</p>
               </div>
             )}
           </div>
@@ -113,7 +113,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
         {/* Venue Information */}
         {rsvp.attending && (
           <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-            <h2 className="text-2xl font-serif text-wedding-maroon-dark mb-4 text-center">
+            <h2 className="text-2xl font-serif text-wedding-accent mb-4 text-center">
               Event Details
             </h2>
             <VenueInfo attendanceType={rsvp.attendance_type} />
@@ -124,14 +124,14 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '450ms' }}>
           <Link
             href={rsvp.attendance_type === 'reception' ? '/reception' : '/'}
-            className="inline-block bg-wedding-maroon text-white px-8 py-3 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 text-center"
+            className="inline-block bg-wedding-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 text-center"
           >
             Back to Home
           </Link>
           {rsvp.attending && (
             <Link
               href={rsvp.attendance_type === 'reception' ? '/reception#venue-details' : '/#venue-details'}
-              className="inline-block bg-white text-wedding-maroon border-2 border-wedding-maroon px-8 py-3 rounded-lg font-semibold hover:bg-wedding-beige-light transition-colors duration-200 text-center"
+              className="inline-block bg-white text-wedding-primary border-2 border-wedding-primary px-8 py-3 rounded-lg font-semibold hover:bg-wedding-secondary transition-colors duration-200 text-center"
             >
               View Full Venue Details
             </Link>
@@ -139,7 +139,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
         </div>
 
         {/* Additional Note */}
-        <div className="mt-8 text-center text-sm text-wedding-maroon/70 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+        <div className="mt-8 text-center text-sm text-wedding-primary/70 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
           <p>
             If you need to make changes to your RSVP, please contact us directly.
           </p>
@@ -148,4 +148,3 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
     </div>
   )
 }
-
