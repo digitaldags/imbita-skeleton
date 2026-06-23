@@ -2,7 +2,7 @@
  * TypeScript types for the database schema
  */
 
-export type AttendanceType = 'church' | 'reception' | 'both'
+export type AttendanceType = 'ceremony' | 'reception' | 'both'
 
 export interface RSVP {
   id: string

@@ -83,7 +83,7 @@ export async function submitRSVP(formData: RSVPFormData): Promise<ActionResult> 
     }
 
     // Validate attendance_type if attending
-    if (formData.attending && !['church', 'reception', 'both'].includes(formData.attendance_type)) {
+    if (formData.attending && !['ceremony', 'reception', 'both'].includes(formData.attendance_type)) {
       return {
         success: false,
         error: 'Invalid attendance type selected',

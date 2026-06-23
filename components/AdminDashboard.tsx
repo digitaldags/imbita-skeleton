@@ -43,7 +43,7 @@ export default function AdminDashboard() {
   const [totalAll, setTotalAll] = useState(0)
   const [totalAttending, setTotalAttending] = useState(0)
   const [totalNotAttending, setTotalNotAttending] = useState(0)
-  const [totalChurch, setTotalChurch] = useState(0)
+  const [totalCeremony, setTotalCeremony] = useState(0)
   const [totalReception, setTotalReception] = useState(0)
   const [totalBoth, setTotalBoth] = useState(0)
   const [sortColumn, setSortColumn] = useState<RSVPSortColumn>('created_at')
@@ -76,7 +76,7 @@ export default function AdminDashboard() {
       setTotalAll(result.totalAll)
       setTotalAttending(result.totalAttending)
       setTotalNotAttending(result.totalNotAttending)
-      setTotalChurch(result.totalChurch)
+      setTotalCeremony(result.totalCeremony)
       setTotalReception(result.totalReception)
       setTotalBoth(result.totalBoth)
     } catch (err) {
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
 
   const getAttendanceTypeLabel = (type: AttendanceType) => {
     switch (type) {
-      case 'church':
+      case 'ceremony':
         return 'Church Only'
       case 'reception':
         return 'Reception Only'
@@ -286,7 +286,7 @@ export default function AdminDashboard() {
       <div className="mb-6 flex gap-4 flex-wrap">
         <div className="bg-blue-50 p-4 rounded-lg flex-1 min-w-[200px]">
           <div className="text-sm text-blue-700">Church Only</div>
-          <div className="text-2xl font-bold text-blue-800">{totalChurch}</div>
+          <div className="text-2xl font-bold text-blue-800">{totalCeremony}</div>
         </div>
         <div className="bg-purple-50 p-4 rounded-lg flex-1 min-w-[200px]">
           <div className="text-sm text-purple-700">Reception Only</div>
@@ -340,7 +340,7 @@ export default function AdminDashboard() {
                   setTotalAll(result.totalAll)
                   setTotalAttending(result.totalAttending)
                   setTotalNotAttending(result.totalNotAttending)
-                  setTotalChurch(result.totalChurch)
+                  setTotalCeremony(result.totalCeremony)
                   setTotalReception(result.totalReception)
                   setTotalBoth(result.totalBoth)
                 }).catch((err) => {
@@ -356,7 +356,7 @@ export default function AdminDashboard() {
             className="px-3 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white text-wedding-maroon-dark"
           >
             <option value="all">All Attendees</option>
-            <option value="church">Church Only</option>
+            <option value="ceremony">Ceremony Only</option>
             <option value="reception">Reception Only</option>
             <option value="both">Both Events</option>
           </select>
@@ -541,7 +541,7 @@ export default function AdminDashboard() {
                         className="px-2 py-1 border border-wedding-beige-dark rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent bg-white disabled:opacity-50"
                       >
                         <option value="both">Both</option>
-                        <option value="church">Church Only</option>
+                        <option value="ceremony">Ceremony Only</option>
                         <option value="reception">Reception Only</option>
                       </select>
                     ) : rsvp.attending ? (
