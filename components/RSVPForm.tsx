@@ -74,7 +74,7 @@ export default function RSVPForm({
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="first_name" className="block text-sm font-medium text-wedding-maroon-dark mb-2">
+          <label htmlFor="first_name" className="block text-sm font-medium text-wedding-accent mb-2">
             First Name *
           </label>
           <input
@@ -84,13 +84,13 @@ export default function RSVPForm({
             required
             value={formData.first_name}
             onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
-            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
             placeholder="Your first name"
           />
         </div>
 
         <div>
-          <label htmlFor="last_name" className="block text-sm font-medium text-wedding-maroon-dark mb-2">
+          <label htmlFor="last_name" className="block text-sm font-medium text-wedding-accent mb-2">
             Last Name *
           </label>
           <input
@@ -100,13 +100,13 @@ export default function RSVPForm({
             required
             value={formData.last_name}
             onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
-            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
             placeholder="Your last name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-wedding-maroon-dark mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-wedding-accent mb-2">
             Email *
           </label>
           <input
@@ -116,13 +116,13 @@ export default function RSVPForm({
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+            className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
             placeholder="your.email@example.com"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-wedding-maroon-dark mb-3">
+          <label className="block text-sm font-medium text-wedding-accent mb-3">
             Will you be attending? *
           </label>
           <div className="space-y-2">
@@ -132,9 +132,9 @@ export default function RSVPForm({
                 name="attending"
                 checked={formData.attending === true}
                 onChange={() => setFormData({ ...formData, attending: true })}
-                className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
+                className="mr-2 text-wedding-primary focus:ring-wedding-primary"
               />
-              <span className="text-wedding-maroon-dark">Yes, I&apos;ll be there!</span>
+              <span className="text-wedding-accent">Yes, I&apos;ll be there!</span>
             </label>
             <label className="flex items-center">
               <input
@@ -142,16 +142,16 @@ export default function RSVPForm({
                 name="attending"
                 checked={formData.attending === false}
                 onChange={() => setFormData({ ...formData, attending: false })}
-                className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
+                className="mr-2 text-wedding-primary focus:ring-wedding-primary"
               />
-              <span className="text-wedding-maroon-dark">Sorry, I can&apos;t make it</span>
+              <span className="text-wedding-accent">Sorry, I can&apos;t make it</span>
             </label>
           </div>
         </div>
 
         {formData.attending && showAttendanceType && (
           <div>
-            <label className="block text-sm font-medium text-wedding-maroon-dark mb-3">
+            <label className="block text-sm font-medium text-wedding-accent mb-3">
               Attendance Preference *
             </label>
             <div className="space-y-2">
@@ -163,9 +163,9 @@ export default function RSVPForm({
                     value={option.value}
                     checked={formData.attendance_type === option.value}
                     onChange={(e) => setFormData({ ...formData, attendance_type: e.target.value as AttendanceType })}
-                    className="mr-2 text-wedding-maroon focus:ring-wedding-maroon"
+                    className="mr-2 text-wedding-primary focus:ring-wedding-primary"
                   />
-                  <span className="text-wedding-maroon-dark">{option.label}</span>
+                  <span className="text-wedding-accent">{option.label}</span>
                 </label>
               ))}
             </div>
@@ -173,8 +173,8 @@ export default function RSVPForm({
         )}
 
         {formData.attending && !showAttendanceType && (
-          <div className="bg-wedding-beige-light border border-wedding-beige-dark rounded-lg px-4 py-3">
-            <p className="text-sm font-medium text-wedding-maroon-dark">
+          <div className="bg-wedding-secondary border border-wedding-beige-dark rounded-lg px-4 py-3">
+            <p className="text-sm font-medium text-wedding-accent">
               Attendance: <span className="font-semibold">
                 {showCeremony ? ceremonyName : receptionName}
               </span>
@@ -197,7 +197,7 @@ export default function RSVPForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-wedding-maroon text-white px-6 py-3 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-wedding-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
         </button>
@@ -207,10 +207,10 @@ export default function RSVPForm({
       {showErrorModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <h3 className="text-xl font-semibold text-wedding-maroon-dark mb-4">
+            <h3 className="text-xl font-semibold text-wedding-accent mb-4">
               Guest Not Found
             </h3>
-            <p className="text-wedding-maroon mb-6">
+            <p className="text-wedding-primary mb-6">
               Your name is not in our guest list. Please contact us if you believe this is an error.
             </p>
             <button
@@ -218,7 +218,7 @@ export default function RSVPForm({
                 setShowErrorModal(false)
                 setIsSubmitting(false)
               }}
-              className="w-full bg-wedding-maroon text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200"
+              className="w-full bg-wedding-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200"
             >
               Close
             </button>

@@ -26,10 +26,10 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                         className={`max-w-6xl mx-auto px-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     >
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-serif text-wedding-maroon-dark mb-4">
+                            <h2 className="text-4xl md:text-5xl font-serif text-wedding-accent mb-4">
                                 Ceremony
                             </h2>
-                            <p className="text-lg text-wedding-maroon italic">
+                            <p className="text-lg text-wedding-primary italic">
                                 Where our union begins
                             </p>
                         </div>
@@ -37,20 +37,20 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                             <div className="space-y-6 order-1">
                                 <div>
-                                    <h3 className="text-2xl font-semibold text-wedding-maroon-dark mb-3">
+                                    <h3 className="text-2xl font-semibold text-wedding-accent mb-3">
                                         {ceremony.name}
                                     </h3>
-                                    <p className="text-wedding-maroon mb-2">
+                                    <p className="text-wedding-primary mb-2">
                                         <span className="font-medium">Location:</span> {ceremony.address}
                                     </p>
-                                    <p className="text-wedding-maroon mb-2">
+                                    <p className="text-wedding-primary mb-2">
                                         <span className="font-medium">Date:</span> {ceremony.date}
                                     </p>
-                                    <p className="text-wedding-maroon mb-4">
+                                    <p className="text-wedding-primary mb-4">
                                         <span className="font-medium">Time:</span> Ceremony starts at {ceremony.time}
                                     </p>
-                                    <div className="bg-wedding-beige-light border-l-4 border-wedding-maroon p-4 rounded-r-lg">
-                                        <p className="text-sm text-wedding-maroon-dark">
+                                    <div className="bg-wedding-secondary border-l-4 border-wedding-primary p-4 rounded-r-lg">
+                                        <p className="text-sm text-wedding-accent">
                                             <span className="font-semibold">Note:</span> {ceremony.note}
                                         </p>
                                     </div>
@@ -60,7 +60,7 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                                             href={ceremony.mapsUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-block bg-wedding-maroon text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 shadow-sm text-sm"
+                                            className="inline-block bg-wedding-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 shadow-sm text-sm"
                                         >
                                             Get Directions
                                         </a>
@@ -85,7 +85,7 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                                     href={ceremony.mapsUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block bg-wedding-maroon text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 shadow-sm text-sm"
+                                    className="inline-block bg-wedding-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 shadow-sm text-sm"
                                 >
                                     Get Directions
                                 </a>
@@ -96,15 +96,15 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
             )}
 
             {showReception && (
-                <section className="w-full bg-wedding-beige-light py-20 md:py-32">
+                <section className="w-full bg-wedding-secondary py-20 md:py-32">
                     <div
                         className={`max-w-6xl mx-auto px-4 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                     >
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-serif text-wedding-maroon-dark mb-4">
+                            <h2 className="text-4xl md:text-5xl font-serif text-wedding-accent mb-4">
                                 Reception Venue
                             </h2>
-                            <p className="text-lg text-wedding-maroon italic">
+                            <p className="text-lg text-wedding-primary italic">
                                 Where we celebrate together
                             </p>
                         </div>
@@ -112,17 +112,17 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                             <div className="space-y-6 order-1 md:order-2">
                                 <div>
-                                    <h3 className="text-2xl font-semibold text-wedding-maroon-dark mb-3">
+                                    <h3 className="text-2xl font-semibold text-wedding-accent mb-3">
                                         {reception.name}
                                     </h3>
-                                    <p className="text-wedding-maroon mb-2">
+                                    <p className="text-wedding-primary mb-2">
                                         <span className="font-medium">Location:</span> {reception.address}
                                     </p>
-                                    <p className="text-wedding-maroon mb-4">
+                                    <p className="text-wedding-primary mb-4">
                                         <span className="font-medium">Time:</span> Reception starts at {reception.time}
                                     </p>
-                                    <div className="bg-white border-l-4 border-wedding-maroon p-4 rounded-r-lg shadow-sm">
-                                        <p className="text-sm text-wedding-maroon-dark">
+                                    <div className="bg-white border-l-4 border-wedding-primary p-4 rounded-r-lg shadow-sm">
+                                        <p className="text-sm text-wedding-accent">
                                             {reception.note}
                                         </p>
                                     </div>
@@ -132,7 +132,7 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                                             href={reception.mapsUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-block bg-wedding-maroon text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 shadow-sm text-sm"
+                                            className="inline-block bg-wedding-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 shadow-sm text-sm"
                                         >
                                             Get Directions
                                         </a>
@@ -157,7 +157,7 @@ export default function VenueDetails({ ceremony, reception, showCeremony, showRe
                                     href={reception.mapsUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block bg-wedding-maroon text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200 shadow-sm text-sm"
+                                    className="inline-block bg-wedding-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200 shadow-sm text-sm"
                                 >
                                     Get Directions
                                 </a>

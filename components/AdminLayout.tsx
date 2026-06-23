@@ -20,12 +20,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen flex bg-wedding-beige-light">
+    <div className="min-h-screen flex bg-wedding-secondary">
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-lg">
         <div className="p-6 h-full flex flex-col">
           <div className="mb-8">
-            <h1 className="text-2xl font-serif text-wedding-maroon-dark">Admin</h1>
+            <h1 className="text-2xl font-serif text-wedding-accent">Admin</h1>
           </div>
 
           <nav className="space-y-2">
@@ -33,8 +33,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               href="/admin/rsvps"
               className={`block px-4 py-2 rounded-lg transition-colors ${
                 pathname === '/admin/rsvps' || pathname === '/admin'
-                  ? 'bg-wedding-maroon text-white'
-                  : 'text-wedding-maroon-dark hover:bg-wedding-beige-light'
+                  ? 'bg-wedding-primary text-white'
+                  : 'text-wedding-accent hover:bg-wedding-secondary'
               }`}
             >
               RSVP List
@@ -43,8 +43,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               href="/admin/guests"
               className={`block px-4 py-2 rounded-lg transition-colors ${
                 pathname === '/admin/guests'
-                  ? 'bg-wedding-maroon text-white'
-                  : 'text-wedding-maroon-dark hover:bg-wedding-beige-light'
+                  ? 'bg-wedding-primary text-white'
+                  : 'text-wedding-accent hover:bg-wedding-secondary'
               }`}
             >
               Guest List
@@ -54,7 +54,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="mt-auto pt-8 border-t border-wedding-beige-dark">
             <button
               onClick={handleLogout}
-              className="w-full px-4 py-2 text-wedding-maroon hover:bg-wedding-beige-light rounded-lg transition-colors"
+              className="w-full px-4 py-2 text-wedding-primary hover:bg-wedding-secondary rounded-lg transition-colors"
             >
               Logout
             </button>

@@ -16,11 +16,11 @@ export default function VenueInfo({ attendanceType }: VenueInfoProps) {
   return (
     <div className="space-y-8">
       {showChurch && (
-        <div className="bg-white border-l-4 border-wedding-maroon p-6 rounded-r-lg shadow-sm">
-          <h3 className="text-xl font-serif text-wedding-maroon-dark mb-4">
+        <div className="bg-white border-l-4 border-wedding-primary p-6 rounded-r-lg shadow-sm">
+          <h3 className="text-xl font-serif text-wedding-accent mb-4">
             Church Ceremony
           </h3>
-          <div className="space-y-2 text-wedding-maroon">
+          <div className="space-y-2 text-wedding-primary">
             <p>
               <span className="font-semibold">Venue:</span> Iglesia Ni Cristo – Locale of Pasay
             </p>
@@ -33,7 +33,7 @@ export default function VenueInfo({ attendanceType }: VenueInfoProps) {
             <p>
               <span className="font-semibold">Time:</span> 2:00 PM
             </p>
-            <p className="text-sm italic mt-4 text-wedding-maroon/80">
+            <p className="text-sm italic mt-4 text-wedding-primary/80">
               Please arrive 15–20 minutes early to be seated before the ceremony begins.
             </p>
           </div>
@@ -41,11 +41,11 @@ export default function VenueInfo({ attendanceType }: VenueInfoProps) {
       )}
 
       {showReception && (
-        <div className="bg-wedding-beige-light border-l-4 border-wedding-maroon p-6 rounded-r-lg shadow-sm">
-          <h3 className="text-xl font-serif text-wedding-maroon-dark mb-4">
+        <div className="bg-wedding-secondary border-l-4 border-wedding-primary p-6 rounded-r-lg shadow-sm">
+          <h3 className="text-xl font-serif text-wedding-accent mb-4">
             Reception
           </h3>
-          <div className="space-y-2 text-wedding-maroon">
+          <div className="space-y-2 text-wedding-primary">
             <p>
               <span className="font-semibold">Venue:</span> Admiral Hotel Manila – MGallery
             </p>
@@ -55,7 +55,7 @@ export default function VenueInfo({ attendanceType }: VenueInfoProps) {
             <p>
               <span className="font-semibold">Time:</span> 6:00 PM
             </p>
-            <p className="text-sm italic mt-4 text-wedding-maroon/80">
+            <p className="text-sm italic mt-4 text-wedding-primary/80">
               Join us for dinner, dancing, and celebration as we begin our journey together.
             </p>
           </div>

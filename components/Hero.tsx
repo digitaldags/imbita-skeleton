@@ -124,17 +124,17 @@ export default function Hero({
       {/* Centered content */}
       <div className="absolute inset-0 flex items-center justify-center px-4">
         <div className="text-center text-white space-y-4 md:space-y-6 animate-fade-in-up">
-          <p className="text-sm uppercase tracking-[0.35em] md:tracking-[0.45em] text-wedding-beige-light">
+          <p className="text-sm uppercase tracking-[0.35em] md:tracking-[0.45em] text-wedding-secondary">
             Save the Date
           </p>
 
           <h1
-            className={`${greatVibes.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-wedding-beige-light`}
+            className={`${greatVibes.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-wedding-secondary`}
           >
             {couple.partner1} &amp; {couple.partner2}
           </h1>
 
-          <p className="text-xs sm:text-sm md:text-base tracking-[0.25em] uppercase text-wedding-beige-light/90">
+          <p className="text-xs sm:text-sm md:text-base tracking-[0.25em] uppercase text-wedding-secondary/90">
             {couple.date} · {couple.location}
           </p>
         </div>

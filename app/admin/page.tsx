@@ -55,7 +55,7 @@ function AdminLogin({ error }: { error: boolean }) {
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-serif text-wedding-maroon-dark mb-6 text-center">
+          <h1 className="text-3xl font-serif text-wedding-accent mb-6 text-center">
             Admin Login
           </h1>
           {error && (
@@ -67,7 +67,7 @@ function AdminLogin({ error }: { error: boolean }) {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-wedding-maroon-dark mb-2"
+                className="block text-sm font-medium text-wedding-accent mb-2"
               >
                 Password
               </label>
@@ -76,13 +76,13 @@ function AdminLogin({ error }: { error: boolean }) {
                 id="password"
                 name="password"
                 required
-                className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-maroon focus:border-transparent"
+                className="w-full px-4 py-2 border border-wedding-beige-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-primary focus:border-transparent"
                 placeholder="Enter admin password"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-wedding-maroon text-white px-6 py-3 rounded-lg font-semibold hover:bg-wedding-maroon-dark transition-colors duration-200"
+              className="w-full bg-wedding-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-wedding-accent transition-colors duration-200"
             >
               Login
             </button>

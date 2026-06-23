@@ -21,7 +21,7 @@ export default function AttireDetails({ attire }: { attire: WeddingConfig['attir
   ]
 
   return (
-    <section className="w-full bg-wedding-beige-light py-20 md:py-12 relative overflow-hidden">
+    <section className="w-full bg-wedding-secondary py-20 md:py-12 relative overflow-hidden">
       {/* Subtle paper texture overlay */}
       <div 
         className="absolute inset-0 opacity-30 pointer-events-none"
@@ -41,16 +41,16 @@ export default function AttireDetails({ attire }: { attire: WeddingConfig['attir
           <div className="space-y-8 md:space-y-4 w-full">
             {/* Heading */}
             <div className="text-center">
-              <h2 className="text-5xl md:text-6xl font-serif text-wedding-maroon-dark mb-3 md:mb-2 tracking-wide">
+              <h2 className="text-5xl md:text-6xl font-serif text-wedding-accent mb-3 md:mb-2 tracking-wide">
                 ATTIRE
               </h2>
-              <p className="text-2xl md:text-3xl font-serif text-wedding-maroon italic">
+              <p className="text-2xl md:text-3xl font-serif text-wedding-primary italic">
                 {attire.dress}
               </p>
             </div>
 
             {/* Dress Code Details */}
-            <div className="space-y-3 md:space-y-2 text-lg md:text-xl text-wedding-maroon-dark text-center">
+            <div className="space-y-3 md:space-y-2 text-lg md:text-xl text-wedding-accent text-center">
               <p className="font-medium">
                 <span className="font-semibold">Gentlemen</span>
                 <span className="mx-2">|</span>
@@ -103,8 +103,8 @@ export default function AttireDetails({ attire }: { attire: WeddingConfig['attir
               </div>
 
               {/* Additional Note */}
-              <div className="bg-white/60 backdrop-blur-sm border-l-4 border-wedding-maroon p-4 rounded-r-lg shadow-sm max-w-md mx-auto">
-                <p className="text-sm text-wedding-maroon-dark leading-relaxed text-center">
+              <div className="bg-white/60 backdrop-blur-sm border-l-4 border-wedding-primary p-4 rounded-r-lg shadow-sm max-w-md mx-auto">
+                <p className="text-sm text-wedding-accent leading-relaxed text-center">
                   {attire.note}
                 </p>
               </div>
