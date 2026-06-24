@@ -35,3 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+original.wedding.config.yaml
+CLAUDE.md
+imbita-skeleton-project-details.md
+second-of-may-CLAUDE.md
