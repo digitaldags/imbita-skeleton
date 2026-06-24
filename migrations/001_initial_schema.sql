@@ -27,7 +27,7 @@ CREATE TABLE rsvps (
   email               TEXT                     NOT NULL,
   attending           BOOLEAN                  NOT NULL DEFAULT false,
   attendance_type     TEXT                     NOT NULL DEFAULT 'both'
-                        CHECK (attendance_type IN ('church', 'reception', 'both')),
+                        CHECK (attendance_type IN ('ceremony', 'reception', 'both')),
   reminder_sent       BOOLEAN                  NOT NULL DEFAULT false,
   reminder_sent_at    TIMESTAMP WITH TIME ZONE,
   created_at          TIMESTAMP WITH TIME ZONE DEFAULT NOW(),

@@ -16,6 +16,7 @@ import {
   Text,
 } from '@react-email/components'
 import type { AttendanceType } from '@/lib/types'
+import { config } from '@/lib/config'
 
 interface ReminderEmailProps {
   firstName: string
@@ -30,7 +31,7 @@ export function ReminderEmail({
   daysAway,
   weddingDateFormatted,
 }: ReminderEmailProps) {
-  const showChurch = attendanceType === 'ceremony' || attendanceType === 'both'
+  const showCeremony = attendanceType === 'ceremony' || attendanceType === 'both'
   const showReception = attendanceType === 'reception' || attendanceType === 'both'
 
   const daysLabel =
@@ -50,7 +51,7 @@ export function ReminderEmail({
         <Container style={containerStyle}>
           {/* Header */}
           <Section style={headerStyle}>
-            <Heading style={coupleStyle}>Jann Daniel & Faith</Heading>
+            <Heading style={coupleStyle}>{config.email.senderName}</Heading>
             <Text style={weddingDateStyle}>{weddingDateFormatted}</Text>
           </Section>
 
@@ -73,40 +74,29 @@ export function ReminderEmail({
 
           <Hr style={dividerStyle} />
 
-          {/* Church Ceremony */}
-          {showChurch && (
+          {/* Ceremony */}
+          {showCeremony && (
             <Section style={sectionStyle}>
               <Heading as="h3" style={subheadingStyle}>
-                Church Ceremony
+                Ceremony
               </Heading>
-              <Section style={timeChangeBoxStyle}>
-                <Text style={timeChangeTitleStyle}>Time Change Notice</Text>
-                <Text style={timeChangeBodyStyle}>
-                  Please note that the church ceremony time has been updated.
-                  The ceremony will now begin at <strong>2:00 PM</strong>{' '}
-                  (previously 2:15 PM). Please update your plans accordingly
-                  and aim to arrive 15–20 minutes early.
-                </Text>
-              </Section>
               <Text style={bodyTextStyle}>
-                <strong>Venue:</strong> Iglesia Ni Cristo – Locale of Pasay
+                <strong>Venue:</strong> {config.ceremony.name}
                 <br />
-                <strong>Location:</strong> Pasay City, Metro Manila
+                <strong>Location:</strong> {config.ceremony.address}
                 <br />
-                <strong>Date:</strong> May 2, 2026
+                <strong>Date:</strong> {config.ceremony.date}
                 <br />
-                <strong>Time:</strong> 2:00 PM
+                <strong>Time:</strong> {config.ceremony.time}
               </Text>
               <Text style={noteTextStyle}>
-                Please arrive 15–20 minutes early to be seated before the
-                ceremony begins.
+                {config.ceremony.note}
               </Text>
-
             </Section>
           )}
 
-          {/* Divider between church and reception sections */}
-          {showChurch && showReception && <Hr style={dividerStyle} />}
+          {/* Divider between ceremony and reception sections */}
+          {showCeremony && showReception && <Hr style={dividerStyle} />}
 
           {/* Reception */}
           {showReception && (
@@ -115,15 +105,14 @@ export function ReminderEmail({
                 Reception
               </Heading>
               <Text style={bodyTextStyle}>
-                <strong>Venue:</strong> Admiral Hotel Manila – MGallery
+                <strong>Venue:</strong> {config.reception.name}
                 <br />
-                <strong>Location:</strong> Roxas Boulevard, Manila
+                <strong>Location:</strong> {config.reception.address}
                 <br />
-                <strong>Time:</strong> 6:00 PM
+                <strong>Time:</strong> {config.reception.time}
               </Text>
               <Text style={noteTextStyle}>
-                Join us for dinner, dancing, and celebration as we begin our
-                journey together.
+                {config.reception.note}
               </Text>
             </Section>
           )}
@@ -133,17 +122,15 @@ export function ReminderEmail({
           {/* Attire */}
           <Section style={sectionStyle}>
             <Heading as="h3" style={subheadingStyle}>
-              Attire — Strictly Formal
+              Attire — {config.attire.dress}
             </Heading>
             <Text style={bodyTextStyle}>
-              <strong>Gentlemen:</strong> Barong Tagalog
+              <strong>Gentlemen:</strong> {config.attire.male}
               <br />
-              <strong>Ladies:</strong> Long Gown / Dress
+              <strong>Ladies:</strong> {config.attire.female}
             </Text>
             <Text style={noteTextStyle}>
-              Color palette: Deep Forest Green, Standard Green, Olive Green,
-              Sand Beige, and Deep Brown. Please honor the dress code to ensure
-              a cohesive and elegant celebration.
+              {config.attire.note}
             </Text>
           </Section>
 
@@ -158,7 +145,7 @@ export function ReminderEmail({
             <Text style={signatureStyle}>
               With love,
               <br />
-              <strong>Jann Daniel &amp; Faith</strong>
+              <strong>{config.email.senderName}</strong>
             </Text>
           </Section>
 
@@ -271,27 +258,5 @@ const footerStyle: React.CSSProperties = {
 const footerTextStyle: React.CSSProperties = {
   color: '#9a8070',
   fontSize: '12px',
-  margin: 0,
-}
-
-const timeChangeBoxStyle: React.CSSProperties = {
-  backgroundColor: '#fffbeb',
-  borderLeft: '4px solid #d97706',
-  borderRadius: '0 6px 6px 0',
-  padding: '16px',
-  marginBottom: '16px',
-}
-
-const timeChangeTitleStyle: React.CSSProperties = {
-  color: '#92400e',
-  fontSize: '14px',
-  fontWeight: 'bold',
-  margin: '0 0 6px 0',
-}
-
-const timeChangeBodyStyle: React.CSSProperties = {
-  color: '#3d1a22',
-  fontSize: '13px',
-  lineHeight: '1.6',
   margin: 0,
 }

@@ -1,18 +1,17 @@
 couple:
-  partner1: John Daniel
-  partner2: Fate
-  date: May 2, 2026
-  location: Manila, Philippines
+  partner1: Alex Rivera
+  partner2: Jordan Kim
+  date: October 18, 2025
+  location: Carmel, California
 
-rsvpDeadline: April 2, 2026
+rsvpDeadline: September 18, 2025
 
 hero:
   images:
-    - hero-1-hd.jpg
-    - hero-3-hd.jpg
-    - hero-4-hd.jpg
-    - hero-5-hd.jpg
-    - hero-6-hd.jpg
+    - src: hero-test.JPG
+      mobileSrc: hero-test-mobile.JPG
+    # - src: hero-2.jpg
+    #   mobileSrc: hero-2-mobile.jpg
 
 # Toggle sections on or off — set to false to hide
 sections:
@@ -23,64 +22,59 @@ sections:
   rsvp: true
 
 ceremony:
-  name: Iglesia Ni Cristo – Locale of Pasay
-  address: Pasay City, Metro Manila
-  date: May 2, 2026
-  time: "2:00 PM"
-  note: Please arrive 15–20 minutes early to be seated before the ceremony begins.
+  name: St. Michael's Chapel
+  address: 123 Oak Lane, Carmel, CA 93923
+  date: October 18, 2025
+  time: "3:00 PM"
+  note: Please arrive 15 minutes early so we can begin on time.
   mapsUrl: https://maps.google.com/
-  image: church-ceremony-1.png
+  image: ceremony-venue.jpg
 
 reception:
-  name: Admiral MGallery Hotel
-  address: Roxas Boulevard, Manila
-  time: "6:00 PM"
-  note: Join us for dinner, dancing, and celebration as we begin our journey together as husband and wife.
+  name: The Highlands Estate
+  address: 456 Seaside Ave, Carmel, CA 93923
+  time: "6:30 PM"
+  note: Join us for dinner, dancing, and celebration as we begin our new chapter together.
   mapsUrl: https://maps.google.com/
-  image: reception-hotel.jpg
+  image: reception-venue.jpg
 
 attire:
-  dress: Strictly Formal
-  male: Barong Tagalog
-  female: Long Gown / Dress
-  note: Please honor the dress code and color palette to ensure a cohesive and elegant celebration aesthetic.
+  dress: Garden Formal
+  male: Suit & Tie
+  female: Cocktail Dress or Formal Gown
+  note: Please honor the dress code to help us create a beautiful and cohesive celebration.
   images:
-    male: barong-tagalog.png
-    female: green-gown.png
+    male: attire-male.png
+    female: attire-female.png
 
 faq:
-  - question: Can we skip the ceremony and go to the reception?
-    answer: "Of course! We'll see you at the reception, just answer the RSVP :)"
-  - question: We will be going to the church, what time should we arrive?
-    answer: We kindly ask our guests to arrive at the church by 2:00 PM so we can begin the ceremony on time and maintain its solemn atmosphere.
   - question: Where should I park?
-    answer: There are plenty of parking slots both in the church and hotel venue.
-  - question: I am coming from out of town. Where should I stay?
-    answer: You may check Airbnb for nearby accommodations or message us via Facebook Messenger to avail the special discount at Admiral Hotel Manila.
-  - question: Can we take pictures and videos during the ceremony?
-    answer: "Our ceremony is unplugged and we plan to keep it solemn. Please keep your phones on silent during the processional and ceremony. Once we are pronounced as husband and wife, you're free to take photos and videos. Please keep the aisle clear during the bridal entrance."
-  - question: Can we bring our kids?
-    answer: As much as we love kids, we want the event to be for adults only. The only kids attending our wedding are those we requested. Thank you for understanding.
-  - question: Do you have any gift preference?
-    answer: "We are grateful for the time and effort you'll be spending just to be there on our special day. We'll be thankful to receive monetary gifts as we build our family."
+    answer: Complimentary parking is available at both venues. Please follow the signs upon arrival.
+  - question: Will the ceremony be outdoors?
+    answer: The ceremony will be held inside St. Michael's Chapel. The cocktail hour will be outdoors, weather permitting.
+  - question: Can we take photos during the ceremony?
+    answer: We kindly ask that you keep phones and cameras away during the ceremony so everyone can be fully present. Our photographer will capture every moment!
+  - question: Are kids welcome?
+    answer: We love your little ones! However, this is an adults-only event. We hope this gives you a chance to enjoy a night out.
   - question: Can we bring a plus-one?
-    answer: "As much as we'd love to have everyone celebrate with us, unfortunately, we can only accommodate a limited number of guests due to venue space and budget restrictions."
-  - question: Can we sit anywhere in the church?
-    answer: Church seating arrangements are strictly implemented to uphold the solemnity and organization of the worship service. We sincerely ask for your understanding and respect for this practice.
-  - question: Can we sit anywhere at the reception?
-    answer: "It took us a lot of effort and discussion to finish the seating arrangement which is planned for everyone's convenience and network preference. You'll be seated along with family and friends."
+    answer: Due to venue capacity, we can only accommodate guests listed on the invitation. Please reach out if you have any questions.
   - question: Do we really need to RSVP?
-    answer: Yes. This will help us finalize the headcount for catering and seating arrangement.
-  - question: When can we leave?
-    answer: We would appreciate it if you could stay with us until the end of the program (9pm).
-  - question: How can we help the couple have the best time?
-    answer: "RSVP NOW. Wear APPROPRIATE attire. Be there ON TIME. Stay until the end of the program. Have fun and enjoy! :)"
+    answer: Yes, please! RSVPs help us finalize the headcount for catering and seating. We'd hate to miss you.
+  - question: What if I have dietary restrictions?
+    answer: Please note any dietary restrictions when you RSVP and we will do our best to accommodate you.
+  - question: When should I arrive?
+    answer: The ceremony begins at 3:00 PM. Please plan to arrive by 2:45 PM so we can start on time.
 
 email:
-  senderName: Jann Daniel & Faith
+  senderName: Alex & Jordan
   senderAddress: noreply@yourdomain.com
 
 theme:
-  primary: "#7C3041"
-  secondary: "#F5F0E8"
-  accent: "#5C2233"
+  primary: "#4A7856"
+  secondary: "#F4F8F5"
+  accent: "#3A5E44"
+
+# theme:
+#   primary: "#7C3041"   # burgundy/maroon
+#   secondary: "#F5F0E8" # warm cream
+#   accent: "#5C2233"    # dark maroon
