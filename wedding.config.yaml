@@ -8,8 +8,8 @@ rsvpDeadline: September 18, 2025
 
 hero:
   images:
-    - src: hero-test.JPG
-      mobileSrc: hero-test-mobile.JPG
+    - src: hero-test.jpg
+      mobileSrc: hero-test-mobile.jpg
     # - src: hero-2.jpg
     #   mobileSrc: hero-2-mobile.jpg
 
