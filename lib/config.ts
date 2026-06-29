@@ -8,6 +8,7 @@ const raw = fs.readFileSync(filePath, "utf8");
 export const config = yaml.load(raw) as WeddingConfig;
 
 export type WeddingConfig = {
+  title: string;
   couple: {
     partner1: string;
     partner2: string;

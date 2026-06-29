@@ -1,3 +1,5 @@
+title: "Alex & Jordan's Wedding"
+
 couple:
   partner1: Alex Rivera
   partner2: Jordan Kim
@@ -10,6 +12,8 @@ hero:
   images:
     - src: hero-test.jpg
       mobileSrc: hero-test-mobile.jpg
+    - src: hero-test-1.jpg
+      mobileSrc: hero-test-1.jpg  
     # - src: hero-2.jpg
     #   mobileSrc: hero-2-mobile.jpg
 
